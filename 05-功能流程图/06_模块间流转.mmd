@@ -1,0 +1,40 @@
+%% 优面AI · 模块间流转关系（Edge 图）
+%% W4 D6 更新：6 阶段 P07 + M3 真实 API
+
+flowchart LR
+    %% ============ 节点定义 ============
+    Start(["🚀 用户开始"]):::start
+    M1["📋 模块1<br/>JD 解析<br/>(前置)"]:::optional
+    M2["📄 模块2<br/>简历定制<br/>(前置+定制)"]:::optional
+    M3["🎤 模块3<br/>模拟面试<br/>(⭐核心)<br/>6阶段+ M3 API"]:::core
+    M4["📈 模块4<br/>复盘档案<br/>(后置)"]:::core
+    Loop(["🔁 再来一次"]):::loop
+
+    %% ============ L1 主路径（用户旅程）============
+    Start ==> M1
+    Start ==> M2
+    Start ==> M3
+    Start ==> M4
+    M1 -->|"定制简历"| M2
+    M2 -->|"用此简历面试"| M3
+    M3 -->|"结束自动归档"| M4
+    M4 -->|"再做一次同公司同岗"| Loop
+    Loop --> M3
+
+    %% ============ L1 快捷入口（一键直达）============
+    M1 -.->|"一键开始面试"| M3
+    M2 -.->|"一键开始面试"| M3
+    M3 -.->|"跳过JD简历直接面试"| M3
+
+    %% ============ Edge 标签说明（5 条主流转）============
+    %% ① M1→M2：一键"用此 JD 定制简历"
+    %% ② M1→M3：一键"用此 JD 开始模拟面试"
+    %% ③ M2→M3：一键"用此简历开始模拟面试"
+    %% ④ M3→M4：面试结束自动归档
+    %% ⑤ M4→M3：一键"再做一次同公司同岗位"
+
+    %% ============ 样式 ============
+    classDef start fill:#FEF3E2,stroke:#F59E0B,stroke-width:2px,color:#1A1A2E
+    classDef optional fill:#E0E7FF,stroke:#5B4FE9,stroke-width:2px,color:#1A1A2E
+    classDef core fill:#D1FAE5,stroke:#10B981,stroke-width:3px,color:#1A1A2E
+    classDef loop fill:#FCE7F3,stroke:#EC4899,stroke-width:2px,color:#1A1A2E

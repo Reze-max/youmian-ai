@@ -1,0 +1,315 @@
+
+// ============ P07 状态机 ============
+
+// 问题库
+const P07_QUESTIONS = [
+  {
+    id: 1, stage: '开场', stageIcon: '👋', stageColor: '#5B4FE9',
+    text: '你好，欢迎参加字节跳动产品岗的 1 面面试。请先用 2-3 分钟做一个自我介绍，包括你的学校、专业、和这个岗位相关的经历。',
+    hint: '👋 面试官在等待你的自我介绍...',
+    followups: [
+      '你刚才提到了那个校园项目，能用一句话补充下你的核心贡献吗？'
+    ]
+  },
+  {
+    id: 2, stage: '实习深挖', stageIcon: '💼', stageColor: '#5B4FE9',
+    text: '我看你简历上在 XX 公司做过产品实习生，能介绍一下你主要负责什么？遇到了什么具体挑战？',
+    hint: '💼 面试官在听你的实习故事...',
+    followups: [
+      '你提到这个项目 DAU 提升了 20%，能具体说说你是怎么做到的吗？用了什么方法？',
+      '结果数据怎么样？后来这个项目还在运行吗？'
+    ]
+  },
+  {
+    id: 3, stage: '项目深挖', stageIcon: '🚀', stageColor: '#7B68EE',
+    text: '你简历上有一个校园二手交易平台项目，当时为什么想做这个？是怎么发现这个机会的？',
+    hint: '🚀 面试官在追问你的项目动机...',
+    followups: [
+      '2000+ 用户是怎么获取的？有没有尝试过在陌生流量池（比如 QQ 群、贴吧）投放？',
+      '你提到月 GMV 8 万，那获客成本大概是多少？'
+    ]
+  },
+  {
+    id: 4, stage: '业务考察', stageIcon: '🎯', stageColor: '#10B981',
+    text: '假设让你重新设计抖音的"关注"页 Tab，你会怎么做？需要考虑哪些关键决策？',
+    hint: '🎯 面试官在考察你的产品设计能力...',
+    followups: [
+      '你提到双列 Feed 切换，具体怎么判断哪些内容进双列、哪些进单列？'
+    ]
+  },
+  {
+    id: 5, stage: '收尾反问', stageIcon: '❓', stageColor: '#F59E0B',
+    text: '面试接近尾声了。你有什么问题想问我的吗？比如团队情况、这个岗位的期待、或者成长路径？',
+    hint: '❓ 面试官在等待你的反问...',
+    followups: []
+  }
+];
+
+// 状态变量
+let p07State = {
+  currentQ: 0,            // 当前题号 0-4
+  currentFollowup: -1,    // -1=主问, 0+ =追问索引
+  phase: 'idle',          // idle / analyzing / feedback
+  answered: 0,            // 已答题目数
+  followupCount: 0,       // 本主题已追问次数
+  voiceOn: true,          // 语音开关
+  hasShownHint: false     // 是否已显示过思路提示
+};
+
+// AI 反馈生成（基于回答长度+关键词）
+function p07GenerateFeedback(userText) {
+  const text = (userText || '').trim();
+  const length = text.length;
+  const hasNumber = /\d+/.test(text);
+  const hasReflection = /我意识|我学到了|我反思|我后来|下次我会|我意识到/.test(text);
+  const hasSTAR = /当时|背景|目标|做了|结果|数据|方法|挑战/.test(text);
+  
+  let rating, feedback, willFollowup;
+  
+  if (length < 20) {
+    rating = 'shallow';
+    feedback = '回答偏短，能再展开一些吗？';
+    willFollowup = true;
+  } else if (length < 60) {
+    rating = 'ok';
+    feedback = '了解了' + (hasNumber ? '，有数据不错' : '') + '，但可以更具体一些。';
+    willFollowup = !hasSTAR;
+  } else if (length < 150) {
+    if (hasNumber && hasSTAR) {
+      rating = 'good';
+      feedback = '回答得不错，有数据有逻辑。';
+      willFollowup = !hasReflection;
+    } else {
+      rating = 'ok';
+      feedback = '回答还可以' + (!hasNumber ? '，缺一些数据支撑' : '') + (!hasSTAR ? '，可以更结构化' : '') + '。';
+      willFollowup = true;
+    }
+  } else {
+    if (hasReflection) {
+      rating = 'great';
+      feedback = '回答得很完整，有数据有反思。';
+      willFollowup = false;
+    } else {
+      rating = 'good';
+      feedback = '内容很丰富。';
+      willFollowup = true;
+    }
+  }
+  
+  return { rating, feedback, willFollowup };
+}
+
+function p07RatingStyle(rating) {
+  if (rating === 'shallow') return { icon: '⚠️', label: '回答偏短' };
+  if (rating === 'ok') return { icon: '👍', label: '回答尚可' };
+  if (rating === 'good') return { icon: '✓', label: '回答不错' };
+  if (rating === 'great') return { icon: '🌟', label: '回答优秀' };
+  return { icon: '✓', label: '已记录' };
+}
+
+// 获取当前显示的问题文本
+function p07GetCurrentText() {
+  const q = P07_QUESTIONS[p07State.currentQ];
+  if (p07State.currentFollowup === -1) {
+    return { text: q.text, isFollowup: false, followupIdx: 0 };
+  } else {
+    return { text: q.followups[p07State.currentFollowup], isFollowup: true, followupIdx: p07State.currentFollowup };
+  }
+}
+
+// 初始化 / 重置 P07
+function p07Init() {
+  p07State = { currentQ: 0, currentFollowup: -1, phase: 'idle', answered: 0, followupCount: 0, voiceOn: true, hasShownHint: false };
+  document.getElementById('p07-conversation').innerHTML = '';
+  p07RenderCurrent();
+}
+
+// 渲染当前问题（清空对话流 + 显示新问题）
+function p07RenderCurrent() {
+  const q = P07_QUESTIONS[p07State.currentQ];
+  const cur = p07GetCurrentText();
+  
+  // 更新顶栏进度
+  const totalAnswered = p07State.answered + 1;
+  document.getElementById('p07-progress').textContent = totalAnswered + '/' + P07_QUESTIONS.length;
+  
+  // 更新阶段指示器
+  document.querySelectorAll('.p07-stage-dot').forEach((dot, i) => {
+    if (i < p07State.currentQ) {
+      dot.style.background = '#10B981'; // 已完成 - 绿色
+    } else if (i === p07State.currentQ) {
+      dot.style.background = q.stageColor; // 当前 - 主题色
+    } else {
+      dot.style.background = '#E5E7EB'; // 未开始
+    }
+  });
+  
+  // 更新阶段徽章
+  document.getElementById('p07-stage-badge').textContent = q.stage + (cur.isFollowup ? ' · 追问' : '');
+  document.getElementById('p07-stage-hint').textContent = cur.isFollowup ? '🔄 追问中...' : q.hint;
+  
+  // 清空对话流，重新显示当前问题
+  const conv = document.getElementById('p07-conversation');
+  conv.innerHTML = '';
+  
+  // AI 提问气泡
+  conv.innerHTML += p07BuildAIBubble(cur.text, cur.isFollowup);
+  
+  // 头像 speaking 动画
+  const avatar = document.getElementById('p07-ai-avatar');
+  avatar.classList.add('p07-ai-speaking');
+  setTimeout(() => avatar.classList.remove('p07-ai-speaking'), 3000);
+  
+  // 状态：输入区
+  p07SetPhase('idle');
+}
+
+// 构建 AI 气泡 HTML
+function p07BuildAIBubble(text, isFollowup) {
+  const borderStyle = isFollowup ? 'border:1px solid #FCA5A5;' : '';
+  const labelText = isFollowup ? '🔥 字节式 · 深度追问' : '字节面试官 · 产品 1 面';
+  const labelColor = isFollowup ? '#EF4444' : '#6B7280';
+  return '<div class="p07-ai-bubble" style="display:flex; gap:10px; margin-bottom:16px;">' +
+    '<div style="width:40px; height:40px; background:linear-gradient(135deg, #5B4FE9, #7B68EE); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:18px; flex-shrink:0;">🧑‍💼</div>' +
+    '<div style="flex:1; min-width:0;">' +
+      '<div style="font-size:12px; color:' + labelColor + '; margin-bottom:4px;">' + labelText + '</div>' +
+      '<div class="card" style="margin:0; padding:14px; background:white; border-radius:14px 14px 14px 4px;' + borderStyle + '">' +
+        '<div style="font-size:14px; line-height:1.7; color:#1A1A2E;">' + text + '</div>' +
+      '</div>' +
+      '<div style="font-size:11px; color:#9CA3AF; margin-top:4px;">14:' + (30 + p07State.answered).toString().padStart(2, '0') + '</div>' +
+    '</div>' +
+  '</div>';
+}
+
+// 构建用户气泡 HTML
+function p07BuildUserBubble(text) {
+  return '<div class="p07-user-bubble" style="display:flex; gap:10px; margin-bottom:16px; flex-direction:row-reverse;">' +
+    '<div style="width:40px; height:40px; background:#F0EEFF; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#5B4FE9; font-size:18px; flex-shrink:0;">👤</div>' +
+    '<div style="flex:1; text-align:right; min-width:0;">' +
+      '<div style="font-size:12px; color:#6B7280; margin-bottom:4px;">你</div>' +
+      '<div class="card" style="margin:0; padding:14px; background:#5B4FE9; color:white; border-radius:14px 14px 4px 14px; text-align:left; word-break:break-word;">' +
+        '<div style="font-size:14px; line-height:1.7;">' + (text || '（未输入内容）') + '</div>' +
+      '</div>' +
+      '<div style="font-size:11px; color:#9CA3AF; margin-top:4px;">14:' + (31 + p07State.answered).toString().padStart(2, '0') + ' · <span class="text-success">已发送</span></div>' +
+    '</div>' +
+  '</div>';
+}
+
+// 切换阶段
+function p07SetPhase(phase) {
+  p07State.phase = phase;
+  document.getElementById('p07-state-input').style.display = phase === 'idle' ? 'block' : 'none';
+  document.getElementById('p07-state-analyzing').style.display = phase === 'analyzing' ? 'block' : 'none';
+  document.getElementById('p07-state-feedback').style.display = phase === 'feedback' ? 'block' : 'none';
+  
+  if (phase === 'idle') {
+    setTimeout(() => {
+      const input = document.getElementById('p07-input');
+      if (input) input.value = '';
+      if (input) input.focus();
+    }, 100);
+  }
+}
+
+// 提交回答
+function submitAnswer() {
+  if (p07State.phase !== 'idle') return;
+  const text = document.getElementById('p07-input').value.trim();
+  if (!text) { toast('请先输入你的回答'); return; }
+  
+  // 记录 + 渲染用户气泡
+  const conv = document.getElementById('p07-conversation');
+  conv.insertAdjacentHTML('beforeend', p07BuildUserBubble(text));
+  conv.scrollTop = conv.scrollHeight;
+  
+  p07State.answered++;
+  p07SetPhase('analyzing');
+  
+  // 2.5s 后显示 AI 反馈
+  setTimeout(() => {
+    const result = p07GenerateFeedback(text);
+    p07ShowFeedback(result);
+  }, 2500);
+}
+
+// 显示 AI 反馈
+function p07ShowFeedback(result) {
+  const style = p07RatingStyle(result.rating);
+  
+  // 在对话流末尾追加 AI 反馈气泡
+  const conv = document.getElementById('p07-conversation');
+  const feedbackBubble = '<div class="p07-ai-bubble" style="display:flex; gap:10px; margin-bottom:16px;">' +
+    '<div style="width:40px; height:40px; background:linear-gradient(135deg, #5B4FE9, #7B68EE); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:18px; flex-shrink:0;">🧑‍💼</div>' +
+    '<div style="flex:1; min-width:0;">' +
+      '<div style="font-size:12px; color:#6B7280; margin-bottom:4px;">面试官反馈</div>' +
+      '<div class="card" style="margin:0; padding:12px 14px; background:#F0EEFF; border-radius:14px 14px 14px 4px; border:1px solid #C7BFFF;">' +
+        '<div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">' +
+          '<span style="font-size:18px;">' + style.icon + '</span>' +
+          '<span style="font-weight:600; font-size:13px; color:#5B4FE9;">' + style.label + '</span>' +
+        '</div>' +
+        '<div style="font-size:13px; line-height:1.6; color:#1A1A2E;">' + result.feedback + '</div>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+  conv.insertAdjacentHTML('beforeend', feedbackBubble);
+  conv.scrollTop = conv.scrollHeight;
+  
+  // 更新底部反馈卡（已记录分数）
+  document.getElementById('p07-feedback-icon').textContent = style.icon;
+  document.getElementById('p07-feedback-label').textContent = style.label;
+  document.getElementById('p07-feedback-text').textContent = result.feedback;
+  
+  // 决定下一步按钮文案
+  const nextBtn = document.getElementById('p07-next-btn');
+  const q = P07_QUESTIONS[p07State.currentQ];
+  const canFollowup = p07State.currentFollowup + 1 < q.followups.length && p07State.followupCount < 1;
+  
+  if (result.willFollowup && canFollowup) {
+    p07State.followupCount++;
+    nextBtn.innerHTML = '🔄 继续追问（' + (p07State.currentFollowup + 2) + '/' + q.followups.length + '）';
+    nextBtn.style.background = '#F59E0B';
+    nextBtn.onclick = function() { p07LoadFollowup(); };
+  } else if (p07State.currentQ < P07_QUESTIONS.length - 1) {
+    nextBtn.innerHTML = '➡️ 进入下一题';
+    nextBtn.style.background = '#5B4FE9';
+    nextBtn.onclick = function() { p07LoadNext(); };
+  } else {
+    // 最后一题
+    nextBtn.innerHTML = '🎉 结束面试，查看反馈';
+    nextBtn.style.background = '#10B981';
+    nextBtn.onclick = function() { go('p08'); };
+  }
+  
+  // 1.2s 后切到 feedback 状态（让用户先看到反馈气泡）
+  setTimeout(() => {
+    p07SetPhase('feedback');
+  }, 1200);
+}
+
+// 加载追问
+function p07LoadFollowup() {
+  p07State.currentFollowup++;
+  p07RenderCurrent();
+}
+
+// 加载下一题
+function p07LoadNext() {
+  p07State.currentQ++;
+  p07State.currentFollowup = -1;
+  p07State.followupCount = 0;
+  p07RenderCurrent();
+}
+
+// 语音切换
+function toggleVoice() {
+  p07State.voiceOn = !p07State.voiceOn;
+  document.getElementById('p07-voice-btn').textContent = p07State.voiceOn ? '🔊' : '🔇';
+  toast(p07State.voiceOn ? '语音已开启' : '语音已关闭');
+}
+
+// 在 P07 页面被打开时初始化
+const _origGo = window.go;
+window.go = function(pageId) {
+  _origGo(pageId);
+  if (pageId === 'p07') p07Init();
+};

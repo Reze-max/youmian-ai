@@ -1,0 +1,15 @@
+﻿# 优面AI · Git 忽略配置
+# === 敏感配置（API key 硬编码）===
+config.js
+*.local.js
+
+# === 系统临时文件 ===
+~$*.docx
+~$*.xlsx
+~$*
+
+# === 临时构建产物 ===
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db

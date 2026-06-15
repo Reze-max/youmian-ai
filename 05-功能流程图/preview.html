@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>优面AI · 7 张流程图样例（Xmind 参考蓝图）</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body { font-family: -apple-system, sans-serif; background: #F8F9FB; padding: 40px; max-width: 1400px; margin: 0 auto; }
+    h1 { color: #5B4FE9; }
+    h2 { color: #1A1A2E; margin-top: 48px; padding: 12px 16px; background: white; border-radius: 8px; border-left: 4px solid #5B4FE9; }
+    .desc { color: #6B7280; font-size: 14px; margin-bottom: 16px; }
+    .mermaid { background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow-x: auto; }
+    .meta { font-size: 12px; color: #9CA3AF; margin-bottom: 8px; }
+    .file-link { color: #5B4FE9; text-decoration: none; font-size: 12px; }
+    .tip { background: #FEF3E2; color: #92400E; padding: 12px; border-radius: 8px; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <h1>🎯 优面AI · 7 张流程图样例</h1>
+  <p class="desc">本预览页用 mermaid CDN 渲染 .mmd 源文件。<strong>这些图作为 Xmind 手画的参考蓝图</strong>，每张图对应 05-功能流程图/ 目录下的同名 .mmd 源文件，你可以照着这个在 Xmind 中重画。</p>
+  <div class="tip">⚠️ <strong>file:// 协议下 fetch 受限</strong>，请用以下方式之一打开本预览页：<br/>1. 在 05-功能流程图/ 目录下运行 <code>python -m http.server 8000</code>，然后访问 http://localhost:8000/preview.html<br/>2. 或在 VS Code 中右键 "Open with Live Server"<br/>3. 或将 .mmd 内容直接粘贴到 https://mermaid.live 编辑器</div>
+
+  <h2>01 · 4 大模块流程总览</h2>
+  <p class="meta">📁 <a class="file-link" href="01_总览图.mmd">01_总览图.mmd</a> · 嵌入位置：02-PRD.md §1.1 市场机会 旁</p>
+  <div class="mermaid" id="d1"></div>
+
+  <h2>02 · 模块1：JD 解析详细流程</h2>
+  <p class="meta">📁 <a class="file-link" href="02_模块1_JD.mmd">02_模块1_JD.mmd</a> · 嵌入位置：02-PRD.md §4.1 模块1 详述旁</p>
+  <div class="mermaid" id="d2"></div>
+
+  <h2>03 · 模块2：简历定制 + 经历包装</h2>
+  <p class="meta">📁 <a class="file-link" href="03_模块2_简历.mmd">03_模块2_简历.mmd</a> · 嵌入位置：02-PRD.md §4.2 模块2 详述旁</p>
+  <div class="mermaid" id="d3"></div>
+
+  <h2>04 · 模块3：模拟面试主流程（含状态机）</h2>
+  <p class="meta">📁 <a class="file-link" href="04_模块3_面试.mmd">04_模块3_面试.mmd</a> · 嵌入位置：02-PRD.md §4.3 模块3 详述旁（核心）</p>
+  <div class="mermaid" id="d4"></div>
+
+  <h2>05 · 模块4：复盘档案 + 能力曲线</h2>
+  <p class="meta">📁 <a class="file-link" href="05_模块4_复盘.mmd">05_模块4_复盘.mmd</a> · 嵌入位置：02-PRD.md §4.4 模块4 详述旁</p>
+  <div class="mermaid" id="d5"></div>
+
+  <h2>06 · 模块间流转关系</h2>
+  <p class="meta">📁 <a class="file-link" href="06_模块间流转.mmd">06_模块间流转.mmd</a> · 嵌入位置：02-PRD.md §3.1 MVP 范围 表格后</p>
+  <div class="mermaid" id="d6"></div>
+
+  <h2>07 · MiniMax-M3 集成架构 + 降级链</h2>
+  <p class="meta">📁 <a class="file-link" href="07_API集成架构.mmd">07_API集成架构.mmd</a> · 嵌入位置：02-PRD.md §11.6 限流降级策略 旁</p>
+  <div class="mermaid" id="d7"></div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: false, theme: "default", flowchart: { curve: "basis" }, securityLevel: "loose" });
+    
+    const files = ["01_总览图", "02_模块1_JD", "03_模块2_简历", "04_模块3_面试", "05_模块4_复盘", "06_模块间流转", "07_API集成架构"];
+    
+    async function loadAll() {
+      for (let i = 0; i < files.length; i++) {
+        try {
+          const res = await fetch(files[i] + ".mmd");
+          if (res.ok) {
+            const text = await res.text();
+            document.getElementById("d" + (i + 1)).textContent = text;
+          }
+        } catch (e) {
+          console.log("fetch failed for " + files[i] + ", using inline");
+        }
+      }
+      await mermaid.run();
+    }
+    loadAll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+/* ============ P07 状态机 CSS ============ */
+.p07-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #F0EEFF;
+  border-top: 3px solid #5B4FE9;
+  border-radius: 50%;
+  animation: p07-spin 1s linear infinite;
+}
+@keyframes p07-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* AI 头像说话时的脉冲 */
+@keyframes p07-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(91, 79, 233, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(91, 79, 233, 0); }
+}
+.p07-ai-speaking {
+  animation: p07-pulse 1.5s ease-in-out infinite;
+}
+
+/* AI 点头 */
+@keyframes p07-nod {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.p07-ai-nod {
+  animation: p07-nod 0.6s ease-in-out;
+}
+
+/* 阶段切换动画 */
+@keyframes p07-slide-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.p07-slide-in {
+  animation: p07-slide-in 0.4s ease;
+}
+
+/* 用户气泡滑入 */
+@keyframes p07-bubble-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.p07-user-bubble {
+  animation: p07-bubble-in-right 0.3s ease;
+}
+
+@keyframes p07-bubble-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.p07-ai-bubble {
+  animation: p07-bubble-in-left 0.3s ease;
+}

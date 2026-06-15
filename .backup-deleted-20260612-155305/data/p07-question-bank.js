@@ -1,0 +1,699 @@
+// 优面AI · P07 题库内联版本（v1.0 · W4 D5）
+// 自动生成自 data/p07-question-bank.json，避免 file:// 协议下 fetch CORS
+// 暴露：window.P07_QUESTION_BANK
+// 关联：modules/questionBank.js
+
+window.P07_QUESTION_BANK = {
+  "version": "1.0",
+  "total": 30,
+  "stages": [
+    "开场",
+    "实习深挖",
+    "项目深挖",
+    "业务考察",
+    "收尾反问"
+  ],
+  "company_persona": {
+    "字节": {
+      "tag": "字节",
+      "focus": "数据驱动 / 增长 / ROI",
+      "rhythm": "快"
+    },
+    "腾讯": {
+      "tag": "腾讯",
+      "focus": "系统思考 / 用户需求",
+      "rhythm": "中"
+    },
+    "美团": {
+      "tag": "美团",
+      "focus": "业务落地 / 商业化 / GMV",
+      "rhythm": "中"
+    },
+    "小红书": {
+      "tag": "小红书",
+      "focus": "内容生态 / 用户洞察",
+      "rhythm": "慢"
+    }
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "stage": "开场",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "基础",
+      "difficulty": "easy",
+      "text": "你好，欢迎参加 ${company} 产品岗的 1 面面试。请先用 2-3 分钟做一个自我介绍，包括你的学校、专业、和这个岗位相关的核心经历。",
+      "template_vars": [
+        "company"
+      ],
+      "followup_angles": [
+        "你刚才提到了那个校园项目，能用一句话补充下你的核心贡献吗？",
+        "为什么选择 ${company}？你对这个岗位的理解是什么？"
+      ],
+      "evaluation_focus": [
+        "表达",
+        "经历组织",
+        "岗位匹配度"
+      ]
+    },
+    {
+      "id": "q002",
+      "stage": "开场",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "基础",
+      "difficulty": "easy",
+      "text": "在正式开始之前，我想先了解一下：你是怎么知道我们公司的？以及你对这个岗位的理解是什么？",
+      "template_vars": [],
+      "followup_angles": [
+        "你提到了 ${target_position} 这个岗位，那你认为我们公司这个岗位的核心能力要求是什么？"
+      ],
+      "evaluation_focus": [
+        "求职动机",
+        "公司理解"
+      ]
+    },
+    {
+      "id": "q003",
+      "stage": "开场",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "基础",
+      "difficulty": "easy",
+      "text": "我看你简历上写的是 ${major} 专业，但你想做产品经理。能否讲讲你是怎么从 ${major} 走到产品这条路的？转折点是什么？",
+      "template_vars": [
+        "major"
+      ],
+      "followup_angles": [
+        "你提到的那个转折点 ${turning_point}，当时具体发生了什么？",
+        "你觉得 ${major} 背景做产品有什么优势和劣势？"
+      ],
+      "evaluation_focus": [
+        "动机",
+        "自我认知",
+        "跨专业思考"
+      ]
+    },
+    {
+      "id": "q004",
+      "stage": "开场",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "基础",
+      "difficulty": "medium",
+      "text": "如果用一个词或一句话形容你自己的产品 sense，你会怎么形容？给一个具体的例子支撑。",
+      "template_vars": [],
+      "followup_angles": [
+        "你举的 ${example_project} 这个例子，能不能再具体一些？当时你的判断依据是什么？"
+      ],
+      "evaluation_focus": [
+        "自我定位",
+        "产品感",
+        "举例能力"
+      ]
+    },
+    {
+      "id": "q005",
+      "stage": "实习深挖",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "实习",
+      "difficulty": "medium",
+      "text": "我看你简历上在 ${intern_company} 做过产品实习生，能介绍一下你主要负责什么？遇到了什么具体挑战？",
+      "template_vars": [
+        "intern_company"
+      ],
+      "followup_angles": [
+        "你提到这个项目 DAU 提升了 ${dau_improvement}，能具体说说你是怎么做到的吗？用了什么方法？",
+        "结果数据怎么样？后来这个项目还在运行吗？"
+      ],
+      "evaluation_focus": [
+        "STAR 结构",
+        "数据敏感度",
+        "方法论"
+      ]
+    },
+    {
+      "id": "q006",
+      "stage": "实习深挖",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "实习",
+      "difficulty": "medium",
+      "text": "在那段实习中，你做的最有成就感的一件事是什么？最失败的一件事呢？反思是什么？",
+      "template_vars": [],
+      "followup_angles": [
+        "你刚才说的 ${failure_case}，如果让你重新做一次，你会怎么做？",
+        "你从这次失败中沉淀的方法论是什么？"
+      ],
+      "evaluation_focus": [
+        "反思能力",
+        "复盘深度",
+        "成长型思维"
+      ]
+    },
+    {
+      "id": "q007",
+      "stage": "实习深挖",
+      "company_tags": [
+        "字节"
+      ],
+      "type": "实习-字节",
+      "difficulty": "medium",
+      "text": "你提到在 ${intern_company} 实习时做过一个 ${project_name}，这个项目最后的核心指标（比如留存 / DAU / GMV）变化是什么？你的动作对指标的贡献度是多少？",
+      "template_vars": [
+        "intern_company",
+        "project_name"
+      ],
+      "followup_angles": [
+        "你说贡献度 ${contribution}，那剩下 ${remaining_contribution} 是团队其他人的功劳还是其他因素？",
+        "如果让你重做一遍，你会砍掉哪些动作？"
+      ],
+      "evaluation_focus": [
+        "数据归因",
+        "贡献度拆分",
+        "反思"
+      ]
+    },
+    {
+      "id": "q008",
+      "stage": "实习深挖",
+      "company_tags": [
+        "腾讯"
+      ],
+      "type": "实习-腾讯",
+      "difficulty": "medium",
+      "text": "我注意到你在 ${intern_company} 实习时做的 ${project_name}，这个项目背后的用户需求是什么？你是怎么定义这个需求的？判断依据是什么？",
+      "template_vars": [
+        "intern_company",
+        "project_name"
+      ],
+      "followup_angles": [
+        "你判断需求的方式 ${research_method}，那这个方法的局限是什么？",
+        "你怎么验证这个需求是真实的而不是你想象的？"
+      ],
+      "evaluation_focus": [
+        "需求分析",
+        "判断依据",
+        "用户研究"
+      ]
+    },
+    {
+      "id": "q009",
+      "stage": "实习深挖",
+      "company_tags": [
+        "美团"
+      ],
+      "type": "实习-美团",
+      "difficulty": "medium",
+      "text": "你在 ${intern_company} 做的 ${project_name}，这个项目涉及商业化吗？ROI 怎么算的？核心指标是什么？",
+      "template_vars": [
+        "intern_company",
+        "project_name"
+      ],
+      "followup_angles": [
+        "你说 ROI 是 ${roi}，那如果不计算机会成本呢？",
+        "这个项目的获客成本（CAC）是多少？LTV 大概是多少？"
+      ],
+      "evaluation_focus": [
+        "商业 sense",
+        "ROI 思维",
+        "成本意识"
+      ]
+    },
+    {
+      "id": "q010",
+      "stage": "实习深挖",
+      "company_tags": [
+        "小红书"
+      ],
+      "type": "实习-小红书",
+      "difficulty": "medium",
+      "text": "我看你做过 ${intern_company} 的内容产品实习，你当时面对的核心创作者群体是谁？你怎么理解他们的创作动机？",
+      "template_vars": [
+        "intern_company"
+      ],
+      "followup_angles": [
+        "你提到的 ${creator_segment}，他们的核心痛点是什么？",
+        "如果让你为这群创作者设计一个激励功能，你会怎么做？"
+      ],
+      "evaluation_focus": [
+        "用户画像",
+        "创作者生态",
+        "网感"
+      ]
+    },
+    {
+      "id": "q011",
+      "stage": "项目深挖",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "项目",
+      "difficulty": "medium",
+      "text": "你简历上有一个 ${project_name}，当时为什么想做这个？是怎么发现这个机会的？",
+      "template_vars": [
+        "project_name"
+      ],
+      "followup_angles": [
+        "你提到的机会点 ${opportunity}，当时市面上有现成方案吗？你凭什么认为你能做出来？",
+        "MVP 阶段踩过哪些坑？"
+      ],
+      "evaluation_focus": [
+        "机会识别",
+        "市场判断",
+        "0-1 思考"
+      ]
+    },
+    {
+      "id": "q012",
+      "stage": "项目深挖",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "项目",
+      "difficulty": "hard",
+      "text": "你这个 ${project_name} 项目，最终结果数据是什么？达到了你最初的预期吗？差距在哪里？",
+      "template_vars": [
+        "project_name"
+      ],
+      "followup_angles": [
+        "你说数据是 ${final_metric}，那和预期 ${expected_metric} 的差距主要原因是什么？",
+        "如果让你再做一次，你会如何调整 KPI 设定？"
+      ],
+      "evaluation_focus": [
+        "数据诚实度",
+        "归因",
+        "预期管理"
+      ]
+    },
+    {
+      "id": "q013",
+      "stage": "项目深挖",
+      "company_tags": [
+        "字节"
+      ],
+      "type": "项目-字节",
+      "difficulty": "hard",
+      "text": "你提到 ${project_name} 覆盖 ${user_count} 用户，这个用户量是怎么获取的？CAC 多少？有没有尝试过在陌生流量池（QQ 群 / 贴吧）做冷启动验证？",
+      "template_vars": [
+        "project_name",
+        "user_count"
+      ],
+      "followup_angles": [
+        "你说月 GMV 是 ${monthly_gmv}，那这个数字是真实的还是刷的？",
+        "如果给你 10 万预算重做这个项目，你怎么分配渠道？"
+      ],
+      "evaluation_focus": [
+        "增长黑客",
+        "陌生人场景",
+        "渠道 ROI"
+      ]
+    },
+    {
+      "id": "q014",
+      "stage": "项目深挖",
+      "company_tags": [
+        "腾讯"
+      ],
+      "type": "项目-腾讯",
+      "difficulty": "hard",
+      "text": "你做的 ${project_name} 解决的核心用户需求是什么？除了你做的方案，还有哪些备选方案？你为什么选这条路？",
+      "template_vars": [
+        "project_name"
+      ],
+      "followup_angles": [
+        "你选的方案 ${chosen_solution}，长期会有什么副作用？",
+        "如果用户量再扩大 10 倍，你的设计会撑不住吗？"
+      ],
+      "evaluation_focus": [
+        "系统思考",
+        "架构意识",
+        "可扩展性"
+      ]
+    },
+    {
+      "id": "q015",
+      "stage": "项目深挖",
+      "company_tags": [
+        "美团"
+      ],
+      "type": "项目-美团",
+      "difficulty": "hard",
+      "text": "你这个 ${project_name} 涉及履约或配送环节吗？效率瓶颈在哪里？优化了多少？用了什么方法？",
+      "template_vars": [
+        "project_name"
+      ],
+      "followup_angles": [
+        "你说效率提升 ${efficiency_gain}，那为什么之前没做到？",
+        "这套方法论能复用到其他业务线吗？"
+      ],
+      "evaluation_focus": [
+        "业务流程",
+        "效率优化",
+        "方法复用"
+      ]
+    },
+    {
+      "id": "q016",
+      "stage": "项目深挖",
+      "company_tags": [
+        "小红书"
+      ],
+      "type": "项目-小红书",
+      "difficulty": "hard",
+      "text": "你做的 ${project_name} 是内容向还是工具向？目标用户的浏览习惯和停留时长大概什么水平？你怎么量化内容质量？",
+      "template_vars": [
+        "project_name"
+      ],
+      "followup_angles": [
+        "你提到 ${engagement_metric}，这个数据健康吗？",
+        "如果让你为这个项目做内容分发策略，你会怎么做？"
+      ],
+      "evaluation_focus": [
+        "内容感知",
+        "用户行为",
+        "数据 vs 感性"
+      ]
+    },
+    {
+      "id": "q017",
+      "stage": "业务考察",
+      "company_tags": [
+        "字节"
+      ],
+      "type": "业务-字节",
+      "difficulty": "hard",
+      "text": "假设让你重新设计抖音的「关注」页 Tab，你会怎么做？需要考虑哪些关键决策？",
+      "template_vars": [],
+      "followup_angles": [
+        "你提到双列 Feed 切换，具体怎么判断哪些内容进双列、哪些进单列？",
+        "如果切换后用户停留时长下降了 5%，你会怎么归因？"
+      ],
+      "evaluation_focus": [
+        "产品设计",
+        "AB 实验",
+        "数据归因"
+      ]
+    },
+    {
+      "id": "q018",
+      "stage": "业务考察",
+      "company_tags": [
+        "字节"
+      ],
+      "type": "业务-字节",
+      "difficulty": "hard",
+      "text": "字节某款产品次日留存从 40% 跌到 30%，你怎么排查？给出 3 个最可能的假设和验证方法。",
+      "template_vars": [],
+      "followup_angles": [
+        "你假设 1 是 ${hypothesis_1}，那要怎么快速验证？",
+        "如果验证后发现不是这个原因，你的下一步是什么？"
+      ],
+      "evaluation_focus": [
+        "问题拆解",
+        "假设驱动",
+        "实验设计"
+      ]
+    },
+    {
+      "id": "q019",
+      "stage": "业务考察",
+      "company_tags": [
+        "字节"
+      ],
+      "type": "业务-字节",
+      "difficulty": "hard",
+      "text": "抖音直播间下单转化率突然下降 20%，你作为负责 PM，第一步做什么？",
+      "template_vars": [],
+      "followup_angles": [
+        "你说先看 ${first_step}，那如果数据没问题，下一步呢？",
+        "如果是主播质量原因，你打算怎么和运营团队沟通？"
+      ],
+      "evaluation_focus": [
+        "应急能力",
+        "跨部门协作",
+        "优先级判断"
+      ]
+    },
+    {
+      "id": "q020",
+      "stage": "业务考察",
+      "company_tags": [
+        "腾讯"
+      ],
+      "type": "业务-腾讯",
+      "difficulty": "hard",
+      "text": "你怎么衡量微信视频号的健康度？给出 3 个核心指标和定义。",
+      "template_vars": [],
+      "followup_angles": [
+        "你说指标 1 是 ${metric_1}，为什么不是 DAU？",
+        "如果这三个指标出现矛盾（比如 DAU 涨但互动率降），你信哪个？"
+      ],
+      "evaluation_focus": [
+        "指标定义",
+        "系统思考",
+        "取舍"
+      ]
+    },
+    {
+      "id": "q021",
+      "stage": "业务考察",
+      "company_tags": [
+        "腾讯"
+      ],
+      "type": "业务-腾讯",
+      "difficulty": "hard",
+      "text": "如果让你为腾讯会议设计一个「会议结束后 5 分钟内给出会议纪要」的功能，你怎么设计？关键链路是什么？",
+      "template_vars": [],
+      "followup_angles": [
+        "你说用 ASR 转写 + LLM 总结，那延迟和成本怎么平衡？",
+        "如果会议有 100 人，每个人关注点不同，怎么办？"
+      ],
+      "evaluation_focus": [
+        "AI 应用",
+        "复杂系统",
+        "用户分层"
+      ]
+    },
+    {
+      "id": "q022",
+      "stage": "业务考察",
+      "company_tags": [
+        "美团"
+      ],
+      "type": "业务-美团",
+      "difficulty": "hard",
+      "text": "美团外卖新客的获客成本（CAC）大概什么水平？主要由哪几部分组成？怎么降低？",
+      "template_vars": [],
+      "followup_angles": [
+        "你说降低 ${cac_reduction_method}，那这个方法的天花板在哪？",
+        "外卖 vs 到店酒旅的 CAC 结构有什么不同？"
+      ],
+      "evaluation_focus": [
+        "商业化",
+        "成本结构",
+        "业务理解"
+      ]
+    },
+    {
+      "id": "q023",
+      "stage": "业务考察",
+      "company_tags": [
+        "美团"
+      ],
+      "type": "业务-美团",
+      "difficulty": "hard",
+      "text": "美团骑手每单配送时长从 32 分钟降到 28 分钟，你认为主要靠什么？",
+      "template_vars": [],
+      "followup_angles": [
+        "你提到 ${optimization_method}，那这个方法的副作用是什么？",
+        "如果骑手体验评分因此下降了 2 分，你怎么平衡？"
+      ],
+      "evaluation_focus": [
+        "业务流程",
+        "效率 vs 体验",
+        "权衡"
+      ]
+    },
+    {
+      "id": "q024",
+      "stage": "业务考察",
+      "company_tags": [
+        "小红书"
+      ],
+      "type": "业务-小红书",
+      "difficulty": "hard",
+      "text": "小红书的「发现」页和「关注」页比例应该是多少？为什么？怎么验证？",
+      "template_vars": [],
+      "followup_angles": [
+        "你给出 ${ratio} 的理由是 ${reasoning}，那用户的反馈呢？",
+        "如果创作者抱怨流量被分流，你怎么办？"
+      ],
+      "evaluation_focus": [
+        "内容生态",
+        "双端平衡",
+        "创作者 vs 用户"
+      ]
+    },
+    {
+      "id": "q025",
+      "stage": "业务考察",
+      "company_tags": [
+        "小红书"
+      ],
+      "type": "业务-小红书",
+      "difficulty": "hard",
+      "text": "你如何理解小红书的「种草 - 拔草」闭环？怎么度量这个闭环是否健康？",
+      "template_vars": [],
+      "followup_angles": [
+        "你说指标是 ${metric}，那外溢到天猫的数据怎么算？",
+        "如果商家投放 ROI 持续下降，你认为问题在哪？"
+      ],
+      "evaluation_focus": [
+        "商业生态",
+        "度量设计",
+        "平台视角"
+      ]
+    },
+    {
+      "id": "q026",
+      "stage": "业务考察",
+      "company_tags": [
+        "小红书"
+      ],
+      "type": "业务-小红书",
+      "difficulty": "hard",
+      "text": "如果小红书要进入一个新品类（比如短剧 / 二次元），你怎么判断这个机会？",
+      "template_vars": [],
+      "followup_angles": [
+        "你提到判断标准 ${criteria}，那小红书最缺什么？",
+        "如果抖音同时进入，你怎么差异化？"
+      ],
+      "evaluation_focus": [
+        "战略思考",
+        "平台定位",
+        "竞争分析"
+      ]
+    },
+    {
+      "id": "q027",
+      "stage": "收尾反问",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "反问",
+      "difficulty": "easy",
+      "text": "面试接近尾声了。你有什么问题想问我的吗？比如团队情况、这个岗位的期待、或者成长路径？",
+      "template_vars": [],
+      "followup_angles": [
+        "你反问的 ${user_question} 不错，我可以展开讲讲。"
+      ],
+      "evaluation_focus": [
+        "反问质量",
+        "求职诚意",
+        "对岗位的兴趣"
+      ]
+    },
+    {
+      "id": "q028",
+      "stage": "收尾反问",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "反问",
+      "difficulty": "medium",
+      "text": "在我们 ${company} 做产品经理，你认为新人最常踩的坑是什么？有什么建议？",
+      "template_vars": [
+        "company"
+      ],
+      "followup_angles": [
+        "你提到了 ${pitfall}，那这个坑背后的产品文化是什么？"
+      ],
+      "evaluation_focus": [
+        "公司理解",
+        "深度思考"
+      ]
+    },
+    {
+      "id": "q029",
+      "stage": "收尾反问",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "反问",
+      "difficulty": "medium",
+      "text": "你对未来 1-3 年这个岗位的候选人，最看重的能力是什么？有什么是你觉得被候选人普遍忽视的？",
+      "template_vars": [],
+      "followup_angles": [
+        "你提到的 ${overlooked_ability}，你有什么学习路径建议？"
+      ],
+      "evaluation_focus": [
+        "行业洞察",
+        "成长潜力"
+      ]
+    },
+    {
+      "id": "q030",
+      "stage": "收尾反问",
+      "company_tags": [
+        "字节",
+        "腾讯",
+        "美团",
+        "小红书"
+      ],
+      "type": "反问",
+      "difficulty": "easy",
+      "text": "感谢你的时间。最后一个问题：你觉得自己今天表现得怎么样？哪些环节答得好，哪些还需要加强？",
+      "template_vars": [],
+      "followup_angles": [
+        "你提到的 ${strength} 和 ${weakness}，那你接下来怎么改进？"
+      ],
+      "evaluation_focus": [
+        "自我认知",
+        "反思能力"
+      ]
+    }
+  ]
+};
+console.log("[P07 题库内联] 已加载 " + window.P07_QUESTION_BANK.total + " 道题");

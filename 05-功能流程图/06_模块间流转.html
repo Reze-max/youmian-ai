@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>优面AI · 模块间流转关系（Edge 图 · W4 D6 升级）</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding:20px;background:#FAFAFA;margin:0}
+    .container{background:white;padding:24px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);max-width:1400px;margin:0 auto}
+    h1{color:#5B4FE9;font-size:22px;margin:0 0 8px 0}
+    p{color:#6B7280;font-size:13px;margin:0 0 20px 0}
+    .legend{display:flex;gap:16px;margin-bottom:16px;font-size:12px;color:#6B7280;flex-wrap:wrap}
+    .legend span{display:inline-flex;align-items:center;gap:6px}
+    .dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+    .mermaid{background:white}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🔄 优面AI · 模块间流转关系（Edge 图）</h1>
+  <p>5 条主流转：M1→M2 / M1→M3 / M2→M3 / M3→M4 / M4→M3 + 6 阶段 P07 + M3 API</p>
+  <div class="legend">
+    <span><span class="dot" style="background:#FEF3E2;border:1px solid #F59E0B"></span> 用户开始</span>
+    <span><span class="dot" style="background:#E0E7FF;border:1px solid #5B4FE9"></span> 可选模块</span>
+    <span><span class="dot" style="background:#D1FAE5;border:1px solid #10B981"></span> 核心模块</span>
+    <span><span class="dot" style="background:#FCE7F3;border:1px solid #EC4899"></span> 循环节点</span>
+  </div>
+  <div class="mermaid">
+%% 优面AI · 模块间流转关系（Edge 图）
+%% W4 D6 更新：6 阶段 P07 + M3 真实 API
+
+flowchart LR
+    %% ============ 节点定义 ============
+    Start(["🚀 用户开始"]):::start
+    M1["📋 模块1<br/>JD 解析<br/>(前置)"]:::optional
+    M2["📄 模块2<br/>简历定制<br/>(前置+定制)"]:::optional
+    M3["🎤 模块3<br/>模拟面试<br/>(⭐核心)<br/>6阶段+ M3 API"]:::core
+    M4["📈 模块4<br/>复盘档案<br/>(后置)"]:::core
+    Loop(["🔁 再来一次"]):::loop
+
+    %% ============ L1 主路径（用户旅程）============
+    Start ==> M1
+    Start ==> M2
+    Start ==> M3
+    Start ==> M4
+    M1 -->|"定制简历"| M2
+    M2 -->|"用此简历面试"| M3
+    M3 -->|"结束自动归档"| M4
+    M4 -->|"再做一次同公司同岗"| Loop
+    Loop --> M3
+
+    %% ============ L1 快捷入口（一键直达）============
+    M1 -.->|"一键开始面试"| M3
+    M2 -.->|"一键开始面试"| M3
+    M3 -.->|"跳过JD简历直接面试"| M3
+
+    %% ============ Edge 标签说明（5 条主流转）============
+    %% ① M1→M2：一键"用此 JD 定制简历"
+    %% ② M1→M3：一键"用此 JD 开始模拟面试"
+    %% ③ M2→M3：一键"用此简历开始模拟面试"
+    %% ④ M3→M4：面试结束自动归档
+    %% ⑤ M4→M3：一键"再做一次同公司同岗位"
+
+    %% ============ 样式 ============
+    classDef start fill:#FEF3E2,stroke:#F59E0B,stroke-width:2px,color:#1A1A2E
+    classDef optional fill:#E0E7FF,stroke:#5B4FE9,stroke-width:2px,color:#1A1A2E
+    classDef core fill:#D1FAE5,stroke:#10B981,stroke-width:3px,color:#1A1A2E
+    classDef loop fill:#FCE7F3,stroke:#EC4899,stroke-width:2px,color:#1A1A2E  </div>
+</div>
+<script>mermaid.initialize({startOnLoad:true, theme:'default', flowchart:{curve:'basis', htmlLabels:true}, themeVariables:{fontSize:'13px'}});</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<div class="page" id="page-p07">
+  <!-- 顶栏 -->
+  <div class="topbar" style="background:linear-gradient(135deg, #5B4FE9, #7B68EE); color:white; border:none;">
+    <span class="back" style="color:white;" onclick="exitInterview()">✕</span>
+    <span class="topbar-title" style="color:white;" id="p07-topbar-title">字节 · 1 面 · 字节式</span>
+    <span style="font-size:12px; background:rgba(255,255,255,0.2); padding:4px 10px; border-radius:10px;" id="p07-progress">1/5</span>
+  </div>
+
+  <div style="padding:0 16px;">
+    <!-- 阶段指示器（5 个圆点，当前高亮）-->
+    <div style="display:flex; gap:6px; margin:12px 0 12px; align-items:center;" id="p07-stage-indicator">
+      <div class="p07-stage-dot" data-stage="1" style="flex:1; height:6px; background:#5B4FE9; border-radius:3px; transition:all 0.3s;"></div>
+      <div class="p07-stage-dot" data-stage="2" style="flex:1; height:6px; background:#E5E7EB; border-radius:3px; transition:all 0.3s;"></div>
+      <div class="p07-stage-dot" data-stage="3" style="flex:1; height:6px; background:#E5E7EB; border-radius:3px; transition:all 0.3s;"></div>
+      <div class="p07-stage-dot" data-stage="4" style="flex:1; height:6px; background:#E5E7EB; border-radius:3px; transition:all 0.3s;"></div>
+      <div class="p07-stage-dot" data-stage="5" style="flex:1; height:6px; background:#E5E7EB; border-radius:3px; transition:all 0.3s;"></div>
+    </div>
+
+    <!-- AI 面试官卡片 -->
+    <div style="display:flex; align-items:center; gap:12px; background:white; border-radius:12px; padding:12px 14px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+      <div style="position:relative;">
+        <div id="p07-ai-avatar" style="width:48px; height:48px; background:linear-gradient(135deg, #5B4FE9, #7B68EE); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:22px; flex-shrink:0;">🧑‍💼</div>
+        <div id="p07-avatar-status" style="position:absolute; bottom:0; right:0; width:14px; height:14px; background:#10B981; border:2px solid white; border-radius:50%; display:none;"></div>
+      </div>
+      <div style="flex:1; min-width:0;">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="font-weight:600; font-size:14px;">字节面试官·小张</span>
+          <span class="tag tag-primary" style="font-size:9px; padding:2px 6px;" id="p07-stage-badge">开场</span>
+        </div>
+        <div style="font-size:11px; color:#6B7280; margin-top:2px;" id="p07-stage-hint">👋 面试官在等待你的自我介绍...</div>
+      </div>
+      <button onclick="toggleVoice()" style="width:36px; height:36px; background:#F0EEFF; border-radius:50%; font-size:16px; display:flex; align-items:center; justify-content:center;" id="p07-voice-btn">🔊</button>
+    </div>
+
+    <!-- 对话流（动态累积）-->
+    <div id="p07-conversation" style="margin-bottom:16px;">
+      <!-- AI 提问气泡（动态填充）-->
+    </div>
+
+    <!-- 状态 1: 输入区 -->
+    <div id="p07-state-input" style="background:white; border-top:1px solid #E5E7EB; padding:12px 0; margin:0 -16px; padding-left:16px; padding-right:16px;">
+      <div style="display:flex; gap:8px; align-items:flex-end;">
+        <button style="width:36px; height:36px; background:#F3F4F6; border-radius:50%; font-size:18px; flex-shrink:0;" onclick="toast('语音输入功能演示中')">🎤</button>
+        <textarea id="p07-input" rows="1" placeholder="输入你的回答..." style="flex:1; padding:10px 14px; border:1px solid #E5E7EB; border-radius:20px; font-size:14px; resize:none; outline:none; max-height:100px; font-family:inherit;"></textarea>
+        <button id="p07-submit-btn" style="width:36px; height:36px; background:#5B4FE9; color:white; border-radius:50%; font-size:16px; flex-shrink:0;" onclick="submitAnswer()">➤</button>
+      </div>
+      <div style="font-size:10px; color:#9CA3AF; margin-top:6px; text-align:center;" id="p07-input-hint">💡 卡壳 30 秒会自动出现思路提示（仅 1 次）</div>
+    </div>
+
+    <!-- 状态 2: AI 分析中 -->
+    <div id="p07-state-analyzing" style="display:none; background:white; border-top:1px solid #E5E7EB; padding:24px 16px; margin:0 -16px; text-align:center;">
+      <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
+        <div class="p07-spinner"></div>
+        <div style="font-size:14px; color:#5B4FE9; font-weight:500;" id="p07-analyzing-text">🧠 AI 正在分析你的回答...</div>
+      </div>
+      <div style="font-size:11px; color:#9CA3AF; margin-top:8px;">正在评估：信息密度 · 数据支撑 · 反思深度</div>
+    </div>
+
+    <!-- 状态 3: AI 反馈 + 下一步操作 -->
+    <div id="p07-state-feedback" style="display:none; background:white; border-top:1px solid #E5E7EB; padding:16px; margin:0 -16px;">
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 14px; background:#F0EEFF; border-radius:12px; margin-bottom:12px;" id="p07-feedback-card">
+        <div style="font-size:24px;" id="p07-feedback-icon">✓</div>
+        <div style="flex:1;">
+          <div style="font-weight:600; font-size:13px; color:#5B4FE9;" id="p07-feedback-label">回答不错</div>
+          <div style="font-size:12px; color:#6B7280; margin-top:2px;" id="p07-feedback-text">回答得不错，有数据有逻辑。</div>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button id="p07-next-btn" style="flex:1; padding:12px; background:#5B4FE9; color:white; border-radius:10px; font-size:14px; font-weight:500;" onclick="nextQuestion()">➡️ 进入下一题</button>
+      </div>
+    </div>
+  </div>
+</div>

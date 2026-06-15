@@ -1,0 +1,1039 @@
+<div class="page" id="page-p01">
+  <div style="height:100vh; background:linear-gradient(160deg, #5B4FE9 0%, #8B7FFF 60%, #B8A8FF 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 32px; color:white; text-align:center;">
+    <div style="font-size:64px; margin-bottom:24px;">🎯</div>
+    <h1 style="font-size:34px; font-weight:700; margin-bottom:12px; letter-spacing:2px;">优面AI</h1>
+    <p style="font-size:17px; opacity:0.95; line-height:1.6; margin-bottom:48px;">敢说真话，让你真的进步<br/>大厂真实面试官 1:1 模拟陪练</p>
+    <div style="background:rgba(255,255,255,0.15); border-radius:16px; padding:14px 20px; margin-bottom:48px; font-size:12px; line-height:1.7;">
+      <div>✨ 字节 · 腾讯 · 小红书 · 美团 真实面试官人设</div>
+      <div>📊 敢说真话的结构化反馈 + 6 维度雷达图</div>
+    </div>
+    <button class="btn" style="background:white; color:#5B4FE9; width:auto; padding:16px 56px; font-size:16px; box-shadow:0 8px 20px rgba(0,0,0,0.15);" onclick="go('p02')">立即开始 →</button>
+    <div style="margin-top:24px; font-size:12px; opacity:0.7;">已有账号？<span style="text-decoration:underline;" onclick="toast('演示版：跳过登录')">登录</span></div>
+  </div>
+</div>
+<!-- P02 -->
+<div class="page" id="page-p02">
+  <div class="topbar">
+    <span class="back" onclick="go('p01')">‹</span>
+    <span class="topbar-title">3 步开启你的模拟面试</span>
+    <span class="right" onclick="go('p03')">跳过</span>
+  </div>
+  <div style="padding:0 20px;">
+    <div style="display:flex; gap:6px; margin:20px 0 28px;">
+      <div style="flex:1; height:4px; background:#5B4FE9; border-radius:2px;"></div>
+      <div style="flex:1; height:4px; background:#E5E7EB; border-radius:2px;"></div>
+      <div style="flex:1; height:4px; background:#E5E7EB; border-radius:2px;"></div>
+    </div>
+    <h2 style="font-size:22px; font-weight:700; margin-bottom:6px;">第 1 步 · 选目标公司</h2>
+    <p style="color:#6B7280; margin-bottom:20px;">选择你最想面试的公司，我们会匹配其真实面试风格</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px;">
+      <div class="company-card" data-co="字节" onclick="selectCompany(this)" style="border:2px solid #5B4FE9; background:#F0EEFF; border-radius:12px; padding:16px; text-align:center; cursor:pointer;">
+        <div style="font-size:32px;">🎵</div>
+        <div style="font-weight:600; margin-top:6px;">字节跳动</div>
+        <div style="font-size:11px; color:#6B7280; margin-top:2px;">挑战型 · 节奏快</div>
+      </div>
+      <div class="company-card" data-co="腾讯" onclick="selectCompany(this)" style="border:2px solid #E5E7EB; background:white; border-radius:12px; padding:16px; text-align:center; cursor:pointer;">
+        <div style="font-size:32px;">🐧</div>
+        <div style="font-weight:600; margin-top:6px;">腾讯</div>
+        <div style="font-size:11px; color:#6B7280; margin-top:2px;">稳健型 · 重视基础</div>
+      </div>
+      <div class="company-card" data-co="小红书" onclick="selectCompany(this)" style="border:2px solid #E5E7EB; background:white; border-radius:12px; padding:16px; text-align:center; cursor:pointer;">
+        <div style="font-size:32px;">📕</div>
+        <div style="font-weight:600; margin-top:6px;">小红书</div>
+        <div style="font-size:11px; color:#6B7280; margin-top:2px;">用户视角 · 偏温和</div>
+      </div>
+      <div class="company-card" data-co="美团" onclick="selectCompany(this)" style="border:2px solid #E5E7EB; background:white; border-radius:12px; padding:16px; text-align:center; cursor:pointer;">
+        <div style="font-size:32px;">🐸</div>
+        <div style="font-weight:600; margin-top:6px;">美团</div>
+        <div style="font-size:11px; color:#6B7280; margin-top:2px;">业务驱动 · 重逻辑</div>
+      </div>
+    </div>
+    <div style="margin-bottom:24px;">
+      <div style="font-size:13px; color:#6B7280; margin-bottom:8px;">目标岗位</div>
+      <select style="width:100%; padding:14px 16px; border:1px solid #E5E7EB; border-radius:12px; background:white; font-size:15px;">
+        <option>产品经理（校招）</option>
+        <option>产品经理（实习）</option>
+        <option>产品运营</option>
+        <option>数据分析</option>
+      </select>
+    </div>
+    <button class="btn btn-primary btn-block" onclick="go('p05')">下一步：上传简历 →</button>
+  </div>
+</div>
+<!-- P03 -->
+<div class="page" id="page-p03">
+  <div class="topbar" style="background:transparent; border:none;">
+    <span class="topbar-title" style="text-align:left; padding-left:0;">👋 你好，同学</span>
+    <span onclick="go('p14')" style="font-size:20px;">🔔</span>
+  </div>
+  <div style="margin:0 16px; padding:20px; background:linear-gradient(135deg, #5B4FE9, #7B68EE); border-radius:16px; color:white;">
+    <div style="font-size:12px; opacity:0.85;">今日任务</div>
+    <div style="font-size:18px; font-weight:600; margin-top:4px;">完成 1 场模拟面试</div>
+    <div style="font-size:12px; opacity:0.85; margin-top:6px;">距秋招投递截止还剩 28 天</div>
+    <button class="btn" style="background:white; color:#5B4FE9; width:auto; padding:10px 20px; font-size:13px; margin-top:14px; border-radius:8px;" onclick="go('p06')">立即开始 →</button>
+  </div>
+  <div class="card" style="background:#FFF8E6; border-left:3px solid #F59E0B;">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span style="font-size:20px;">💡</span>
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:600;">你的"产品设计"题偏弱</div>
+        <div style="font-size:12px; color:#6B7280; margin-top:2px;">近 3 次面试平均 58 分，建议专项突破</div>
+      </div>
+      <span class="tag tag-warning">待加强</span>
+    </div>
+  </div>
+  <div class="card" onclick="go('p05')" style="display:flex; align-items:center; gap:14px;">
+    <div style="width:48px; height:48px; background:#F0EEFF; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px;">📄</div>
+    <div style="flex:1;">
+      <div style="font-weight:600;">我的简历</div>
+      <div style="font-size:12px; color:#6B7280; margin-top:2px;">已上传 · 3 段经历已包装</div>
+    </div>
+    <span style="color:#9CA3AF;">›</span>
+  </div>
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <div style="font-weight:600;">📈 能力进步曲线</div>
+      <span class="text-primary fs-12" onclick="go('p09')">查看完整 →</span>
+    </div>
+    <svg viewBox="0 0 320 80" style="width:100%; height:80px;">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#5B4FE9;stop-opacity:0.3"/>
+          <stop offset="100%" style="stop-color:#5B4FE9;stop-opacity:0"/>
+        </linearGradient>
+      </defs>
+      <path d="M 0 60 L 40 55 L 80 50 L 120 42 L 160 45 L 200 30 L 240 25 L 280 18 L 320 12" fill="none" stroke="#5B4FE9" stroke-width="2"/>
+      <path d="M 0 60 L 40 55 L 80 50 L 120 42 L 160 45 L 200 30 L 240 25 L 280 18 L 320 12 L 320 80 L 0 80 Z" fill="url(#grad1)"/>
+      <circle cx="320" cy="12" r="4" fill="#5B4FE9"/>
+    </svg>
+    <div style="display:flex; justify-content:space-between; font-size:11px; color:#9CA3AF; margin-top:4px;">
+      <span>6 月 1 日</span>
+      <span>6 月 9 日 · 72 分 ↑12</span>
+    </div>
+  </div>
+  <div class="card" style="padding:16px 16px 8px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <div style="font-weight:600;">最近面试</div>
+      <span class="text-primary fs-12" onclick="go('p09')">全部 →</span>
+    </div>
+    <div onclick="go('p10')" style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid #F3F4F6;">
+      <div style="width:40px; height:40px; background:#F0EEFF; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px;">🎵</div>
+      <div style="flex:1; margin-left:12px;">
+        <div style="font-size:14px; font-weight:500;">字节 · 产品 1 面</div>
+        <div style="font-size:11px; color:#6B7280;">今天 14:30 · 23 分钟</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:18px; font-weight:700; color:#5B4FE9;">72</div>
+        <div style="font-size:10px; color:#9CA3AF;">综合分</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid #F3F4F6;">
+      <div style="width:40px; height:40px; background:#FEF3E2; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px;">📕</div>
+      <div style="flex:1; margin-left:12px;">
+        <div style="font-size:14px; font-weight:500;">小红书 · 产品 1 面</div>
+        <div style="font-size:11px; color:#6B7280;">昨天 20:00 · 18 分钟</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:18px; font-weight:700; color:#F59E0B;">65</div>
+        <div style="font-size:10px; color:#9CA3AF;">综合分</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; padding:12px 0;">
+      <div style="width:40px; height:40px; background:#E6FAF1; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px;">🐧</div>
+      <div style="flex:1; margin-left:12px;">
+        <div style="font-size:14px; font-weight:500;">腾讯 · 产品 1 面</div>
+        <div style="font-size:11px; color:#6B7280;">6 月 6 日 · 25 分钟</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:18px; font-weight:700; color:#10B981;">80</div>
+        <div style="font-size:10px; color:#9CA3AF;">综合分</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- P04 -->
+<div class="page" id="page-p04">
+  <div class="topbar">
+    <span class="back" onclick="go('p03')">‹</span>
+    <span class="topbar-title">JD 解析</span>
+    <span class="right" onclick="toast('示例：粘贴 JD 文本即可')">?</span>
+  </div>
+  <div style="padding:0 16px;">
+    <div style="margin:16px 0 8px; font-weight:600;">输入 JD（任选一种）</div>
+    <div style="display:flex; gap:8px; margin-bottom:12px;">
+      <button class="btn-sm" style="background:#F0EEFF; color:#5B4FE9; border-radius:8px; padding:8px 14px; font-size:13px;">📋 粘贴文本</button>
+      <button class="btn-sm" style="background:white; color:#6B7280; border:1px solid #E5E7EB; border-radius:8px; padding:8px 14px; font-size:13px;" onclick="toast('演示版：仅支持粘贴文本')">🔗 招聘链接</button>
+    </div>
+    <div class="card" style="background:#F8F9FB; padding:14px; margin:0;">
+      <textarea rows="6" style="width:100%; border:none; background:transparent; resize:none; font-size:13px; line-height:1.6; outline:none;">字节跳动 · 产品经理（校招）
+1. 负责抖音/今日头条 C 端产品规划
+2. 深入理解用户需求，推动产品迭代
+3. 与研发、设计协作，推进项目落地
+4. 关注行业动态，输出竞品分析</textarea>
+    </div>
+    <button class="btn btn-primary btn-block" style="margin-top:16px;" onclick="showJdResult()">解析 JD →</button>
+    <div id="jd-result" style="display:none; margin-top:20px;">
+      <div style="font-weight:600; margin-bottom:8px;">📊 解析结果</div>
+      <div class="card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+          <div style="width:44px; height:44px; background:#F0EEFF; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px;">🎵</div>
+          <div>
+            <div style="font-weight:600;">字节跳动 · 抖音方向</div>
+            <div style="font-size:11px; color:#6B7280;">挑战型 · 节奏快 · 重视抗压</div>
+          </div>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:6px;">
+          <span class="tag tag-primary">用户增长</span>
+          <span class="tag tag-primary">产品规划</span>
+          <span class="tag tag-primary">数据分析</span>
+          <span class="tag tag-primary">跨部门协作</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px; font-weight:600; margin-bottom:10px;">🔥 高频考点</div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span class="tag tag-warning" style="font-size:12px; padding:6px 12px;">用户增长策略 35%</span>
+          <span class="tag tag-warning" style="font-size:12px; padding:6px 12px;">AB 实验设计 25%</span>
+          <span class="tag tag-warning" style="font-size:12px; padding:6px 12px;">产品功能设计 20%</span>
+          <span class="tag tag-gray" style="font-size:12px; padding:6px 12px;">竞品分析 12%</span>
+          <span class="tag tag-gray" style="font-size:12px; padding:6px 12px;">项目协作 8%</span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block" style="margin-top:12px;" onclick="go('p06')">用此 JD 配置面试 →</button>
+    </div>
+  </div>
+</div>
+<!-- P05 -->
+<div class="page" id="page-p05">
+  <div class="topbar">
+    <span class="back" onclick="go('p03')">‹</span>
+    <span class="topbar-title">简历 & 经历包装</span>
+    <span class="right" onclick="go('p06')">下一步</span>
+  </div>
+  <div style="padding:0 16px;">
+    <div class="card" style="background:linear-gradient(135deg, #F0EEFF, #E8E5FF);">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="font-size:32px;">📄</div>
+        <div style="flex:1;">
+          <div style="font-weight:600;">张同学_产品经理.pdf</div>
+          <div style="font-size:11px; color:#6B7280; margin-top:2px;">已上传 · 解析完成 · 3 段经历</div>
+        </div>
+        <span class="tag tag-success">✓</span>
+      </div>
+    </div>
+    <div style="margin:20px 0 8px; display:flex; justify-content:space-between; align-items:center;">
+      <div style="font-weight:600;">✨ AI 经历包装（3 段）</div>
+      <span class="text-primary fs-12" onclick="toggleAllPkg()">全部采纳</span>
+    </div>
+    <p style="font-size:12px; color:#6B7280; margin-bottom:12px;">基于目标岗位，AI 建议把以下经历包装成产品岗视角。<span style="color:#5B4FE9;">不编造事实</span>，仅做能力映射。</p>
+    <div class="card" style="border-left:3px solid #5B4FE9;">
+      <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px;">
+        <div style="font-size:13px; font-weight:600;">🎓 学术研究 · 企业流程建模</div>
+        <span class="tag tag-primary">跨专业</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.6; margin-bottom:10px;">信管研究生期间，研究 XX 企业 ERP 流程优化方法论，输出论文 1 篇</div>
+      <div style="background:#F0EEFF; border-radius:8px; padding:10px 12px; margin-bottom:10px;">
+        <div style="font-size:11px; color:#5B4FE9; font-weight:600; margin-bottom:4px;">💡 AI 包装建议</div>
+        <div style="font-size:12px; color:#1A1A2E; line-height:1.6;">→ <b>用户需求分析 + 业务流程优化</b><br/>→ 论文能力映射为"系统性思考与文档输出"</div>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn-sm" style="background:#5B4FE9; color:white; padding:6px 14px; font-size:12px; flex:1;" onclick="acceptPkg(this)">采纳</button>
+        <button class="btn-sm" style="background:white; color:#6B7280; border:1px solid #E5E7EB; padding:6px 14px; font-size:12px; flex:1;" onclick="modifyPkg(this)">修改</button>
+        <button class="btn-sm" style="background:white; color:#EF4444; border:1px solid #FEE2E2; padding:6px 14px; font-size:12px; flex:1;" onclick="rejectPkg(this)">拒绝</button>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid #5B4FE9;">
+      <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px;">
+        <div style="font-size:13px; font-weight:600;">🛒 校园创业 · 校园二手交易平台</div>
+        <span class="tag tag-success">直接相关</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.6; margin-bottom:10px;">3 人团队运营，覆盖 2000+ 用户，月 GMV 8 万</div>
+      <div style="background:#F0EEFF; border-radius:8px; padding:10px 12px; margin-bottom:10px;">
+        <div style="font-size:11px; color:#5B4FE9; font-weight:600; margin-bottom:4px;">💡 AI 包装建议</div>
+        <div style="font-size:12px; color:#1A1A2E; line-height:1.6;">→ 突出 <b>用户调研 + 需求验证 + 跨部门协作</b><br/>→ 数据："2000+ 用户 / 月 GMV 8 万" 用作量化的具体数据</div>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn-sm" style="background:#5B4FE9; color:white; padding:6px 14px; font-size:12px; flex:1;" onclick="acceptPkg(this)">采纳</button>
+        <button class="btn-sm" style="background:white; color:#6B7280; border:1px solid #E5E7EB; padding:6px 14px; font-size:12px; flex:1;" onclick="modifyPkg(this)">修改</button>
+        <button class="btn-sm" style="background:white; color:#EF4444; border:1px solid #FEE2E2; padding:6px 14px; font-size:12px; flex:1;" onclick="rejectPkg(this)">拒绝</button>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid #5B4FE9;">
+      <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px;">
+        <div style="font-size:13px; font-weight:600;">📊 课程项目 · 数据分析报告</div>
+        <span class="tag tag-primary">跨专业</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.6; margin-bottom:10px;">商业分析课程项目，分析某零售品牌销售数据，输出 30 页报告</div>
+      <div style="background:#F0EEFF; border-radius:8px; padding:10px 12px; margin-bottom:10px;">
+        <div style="font-size:11px; color:#5B4FE9; font-weight:600; margin-bottom:4px;">💡 AI 包装建议</div>
+        <div style="font-size:12px; color:#1A1A2E; line-height:1.6;">→ 突出 <b>SQL / Excel / 数据可视化</b><br/>→ 业务理解 + 报告输出能力</div>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn-sm" style="background:#5B4FE9; color:white; padding:6px 14px; font-size:12px; flex:1;" onclick="acceptPkg(this)">采纳</button>
+        <button class="btn-sm" style="background:white; color:#6B7280; border:1px solid #E5E7EB; padding:6px 14px; font-size:12px; flex:1;" onclick="modifyPkg(this)">修改</button>
+        <button class="btn-sm" style="background:white; color:#EF4444; border:1px solid #FEE2E2; padding:6px 14px; font-size:12px; flex:1;" onclick="rejectPkg(this)">拒绝</button>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" style="margin-top:16px;" onclick="go('p06')">完成包装，开始模拟面试 →</button>
+  </div>
+</div>
+<!-- P06 -->
+<div class="page" id="page-p06">
+  <div class="topbar">
+    <span class="back" onclick="go('p05')">‹</span>
+    <span class="topbar-title">配置模拟面试</span>
+    <span></span>
+  </div>
+  <div style="padding:0 16px;">
+    <div class="card" style="background:linear-gradient(135deg, #5B4FE9, #7B68EE); color:white;">
+      <div style="font-size:11px; opacity:0.85;">目标公司 / 岗位</div>
+      <div style="font-size:18px; font-weight:600; margin-top:4px;">🎵 字节跳动 · 产品经理 1 面</div>
+      <div style="font-size:12px; opacity:0.85; margin-top:6px;">挑战型 · 节奏快 · 重视抗压</div>
+    </div>
+    <div style="margin:20px 0 8px; font-weight:600;">选择轮次</div>
+    <div style="display:flex; gap:8px; margin-bottom:20px;">
+      <div class="round-pick" data-round="1" onclick="pickRound(this)" style="flex:1; padding:14px; text-align:center; background:#F0EEFF; border:2px solid #5B4FE9; border-radius:10px; cursor:pointer;">
+        <div style="font-weight:600; color:#5B4FE9;">1 面</div>
+        <div style="font-size:11px; color:#6B7280; margin-top:2px;">行为面试 + 基础</div>
+      </div>
+      <div class="round-pick" data-round="2" onclick="pickRound(this)" style="flex:1; padding:14px; text-align:center; background:white; border:2px solid #E5E7EB; border-radius:10px; cursor:pointer;">
+        <div style="font-weight:600; color:#1A1A2E;">2 面</div>
+        <div style="font-size:11px; color:#6B7280; margin-top:2px;">产品设计 + 业务</div>
+      </div>
+    </div>
+    <div style="margin:20px 0 8px; display:flex; justify-content:space-between; align-items:center;">
+      <div style="font-weight:600;">压力级别</div>
+      <span class="tag tag-primary" style="font-size:10px;">v0.2.3 新增</span>
+    </div>
+    <p style="font-size:12px; color:#6B7280; margin-bottom:12px;">选一个最适合你当前状态的强度（v0.2.3 新增 · 解决 P7 紧张痛点）</p>
+    <div class="stress-card" data-stress="温和" onclick="pickStress(this)" style="border:2px solid #E5E7EB; background:white; border-radius:12px; padding:14px; margin-bottom:10px; cursor:pointer;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+        <div style="font-weight:600; display:flex; align-items:center; gap:6px;">
+          <span style="font-size:18px;">🌱</span> 温和
+        </div>
+        <span class="tag tag-success">推荐新手</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.6;">节奏慢，少追问，给充分思考时间<br/>适合：第一次面试 / 容易紧张 / 想先熟悉流程</div>
+    </div>
+    <div class="stress-card" data-stress="标准" onclick="pickStress(this)" style="border:2px solid #5B4FE9; background:#F0EEFF; border-radius:12px; padding:14px; margin-bottom:10px; cursor:pointer;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+        <div style="font-weight:600; display:flex; align-items:center; gap:6px;">
+          <span style="font-size:18px;">⚡</span> 标准
+        </div>
+        <span class="tag tag-primary">默认</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.6;">常规面试节奏 + 适度追问<br/>适合：有一定面试经验 / 想模拟真实场景</div>
+    </div>
+    <div class="stress-card" data-stress="字节式" onclick="pickStress(this)" style="border:2px solid #E5E7EB; background:white; border-radius:12px; padding:14px; margin-bottom:10px; cursor:pointer;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+        <div style="font-weight:600; display:flex; align-items:center; gap:6px;">
+          <span style="font-size:18px;">🔥</span> 字节式
+        </div>
+        <span class="tag tag-error">高强度</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.6;">节奏快 + 连环追问 + 挑战判断<br/><b style="color:#EF4444;">⚠️ 高强度，可能压力大</b> · 适合：抗压能力强 / 面试前最后一次冲刺</div>
+    </div>
+    <div style="margin:20px 0 8px; font-weight:600;">题目数量</div>
+    <div style="display:flex; gap:8px; margin-bottom:20px;">
+      <div class="num-pick" data-num="3" onclick="pickNum(this)" style="flex:1; padding:10px; text-align:center; background:white; border:2px solid #E5E7EB; border-radius:8px; cursor:pointer; font-size:13px;">3 题</div>
+      <div class="num-pick" data-num="5" onclick="pickNum(this)" style="flex:1; padding:10px; text-align:center; background:#F0EEFF; border:2px solid #5B4FE9; border-radius:8px; cursor:pointer; font-size:13px; color:#5B4FE9; font-weight:600;">5 题</div>
+      <div class="num-pick" data-num="8" onclick="pickNum(this)" style="flex:1; padding:10px; text-align:center; background:white; border:2px solid #E5E7EB; border-radius:8px; cursor:pointer; font-size:13px;">8 题</div>
+    </div>
+    <button class="btn btn-primary btn-block" style="margin-top:8px;" onclick="go('p07')">开始面试 →</button>
+  </div>
+</div>
+<!-- P07 -->
+<div class="page" id="page-p07">
+  <div class="topbar" style="background:linear-gradient(135deg, #5B4FE9, #7B68EE); color:white; border:none;">
+    <span class="back" style="color:white;" onclick="exitInterview()">✕</span>
+    <span class="topbar-title" style="color:white;">字节 · 1 面 · 字节式</span>
+    <span style="font-size:12px; background:rgba(255,255,255,0.2); padding:4px 10px; border-radius:10px;">2/5</span>
+  </div>
+  <div style="padding:0 16px;">
+    <div style="display:flex; gap:4px; margin:12px 0 20px;">
+      <div style="flex:1; height:3px; background:#5B4FE9; border-radius:2px;"></div>
+      <div style="flex:1; height:3px; background:#5B4FE9; border-radius:2px;"></div>
+      <div style="flex:1; height:3px; background:#E5E7EB; border-radius:2px;"></div>
+      <div style="flex:1; height:3px; background:#E5E7EB; border-radius:2px;"></div>
+      <div style="flex:1; height:3px; background:#E5E7EB; border-radius:2px;"></div>
+    </div>
+    <div style="display:flex; gap:10px; margin-bottom:16px;">
+      <div style="width:40px; height:40px; background:linear-gradient(135deg, #5B4FE9, #7B68EE); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:18px; flex-shrink:0;">🧑‍💼</div>
+      <div style="flex:1;">
+        <div style="font-size:12px; color:#6B7280; margin-bottom:4px;">字节面试官 · 产品 1 面</div>
+        <div class="card" style="margin:0; padding:14px; background:white; border-radius:14px 14px 14px 4px;">
+          <div style="font-size:14px; line-height:1.7; color:#1A1A2E;">我看你简历上做过一个校园二手交易平台，<b>2000+ 用户</b>。那你当时怎么确定这个需求是真实存在的？<b>有没有具体的数据支撑？</b></div>
+        </div>
+        <div style="font-size:11px; color:#9CA3AF; margin-top:4px;">14:32</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; margin-bottom:16px; flex-direction:row-reverse;">
+      <div style="width:40px; height:40px; background:#F0EEFF; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#5B4FE9; font-size:18px; flex-shrink:0;">👤</div>
+      <div style="flex:1; text-align:right;">
+        <div style="font-size:12px; color:#6B7280; margin-bottom:4px;">你</div>
+        <div class="card" style="margin:0; padding:14px; background:#5B4FE9; color:white; border-radius:14px 14px 4px 14px; text-align:left;">
+          <div style="font-size:14px; line-height:1.7;">嗯……其实一开始是我们自己宿舍有闲置物品不好处理，后来发现身边同学也有这个问题。我们就做了一个简单的问卷，发在朋友圈里，回收了大概 80 份。</div>
+        </div>
+        <div style="font-size:11px; color:#9CA3AF; margin-top:4px;">14:33 · <span class="text-success">已发送</span></div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; margin-bottom:16px;">
+      <div style="width:40px; height:40px; background:linear-gradient(135deg, #5B4FE9, #7B68EE); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:18px; flex-shrink:0;">🧑‍💼</div>
+      <div style="flex:1;">
+        <div style="font-size:12px; color:#EF4444; margin-bottom:4px;">🔥 字节式 · 深度追问</div>
+        <div class="card" style="margin:0; padding:14px; background:white; border-radius:14px 14px 14px 4px; border:1px solid #FCA5A5;">
+          <div style="font-size:14px; line-height:1.7; color:#1A1A2E;">80 份样本量在朋友圈能回收，说明<b>身边人</b>有这个需求。但你怎么证明它不是<b>"熟人效应"</b>？有没有尝试过投到<b>陌生流量池</b>，比如 QQ 群、贴吧？转化率数据是怎样的？</div>
+        </div>
+        <div style="font-size:11px; color:#9CA3AF; margin-top:4px;">14:33 · 正在输入...</div>
+      </div>
+    </div>
+    <div id="hint-btn" style="background:#FFF8E6; border:1px dashed #F59E0B; border-radius:10px; padding:12px 14px; margin-bottom:16px; text-align:center; cursor:pointer;" onclick="showHint()">
+      <div style="font-size:13px; color:#92400E;">💡 <b>需要思路提示吗？</b></div>
+      <div style="font-size:11px; color:#B45309; margin-top:2px;">卡壳 30 秒后出现 · 仅 1 次</div>
+    </div>
+    <div style="position:sticky; bottom:0; background:white; padding:12px 16px; margin:0 -16px; border-top:1px solid #E5E7EB;">
+      <div style="display:flex; gap:8px; align-items:flex-end;">
+        <button style="width:36px; height:36px; background:#F3F4F6; border-radius:50%; font-size:18px;" onclick="toast('语音功能演示中')">🎤</button>
+        <textarea rows="1" placeholder="输入回答..." style="flex:1; padding:10px 14px; border:1px solid #E5E7EB; border-radius:20px; font-size:14px; resize:none; outline:none; max-height:100px;"></textarea>
+        <button style="width:36px; height:36px; background:#5B4FE9; color:white; border-radius:50%; font-size:16px;" onclick="toast('已发送'); setTimeout(()=>go('p08'), 800);">➤</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- P08 -->
+<div class="page" id="page-p08">
+  <div class="topbar">
+    <span class="back" onclick="go('p03')">‹</span>
+    <span class="topbar-title">面试反馈</span>
+    <span class="right" onclick="go('p10')">详情</span>
+  </div>
+  <div style="padding:0 16px;">
+    <div class="card" style="text-align:center; background:linear-gradient(135deg, #5B4FE9, #7B68EE); color:white;">
+      <div style="font-size:12px; opacity:0.85;">综合评分</div>
+      <div style="font-size:64px; font-weight:700; line-height:1.2; margin:8px 0;">72<span style="font-size:24px; opacity:0.7;">/100</span></div>
+      <div style="font-size:13px; opacity:0.9;">同档位排名前 38% · 超出校招平均 8 分</div>
+    </div>
+    <div class="card">
+      <div style="font-weight:600; margin-bottom:12px;">📊 6 维能力雷达</div>
+      <svg viewBox="0 0 280 240" style="width:100%; height:240px;">
+        <g transform="translate(140,120)">
+          <polygon points="0,-90 78,-45 78,45 0,90 -78,45 -78,-45" fill="#F8F9FB" stroke="#E5E7EB" stroke-width="1"/>
+          <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+          <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+          <polygon points="0,-67.5 60.06,-30 60.06,30 0,58.5 -60.06,30 -58.5,-26.25" fill="rgba(91,79,233,0.25)" stroke="#5B4FE9" stroke-width="2"/>
+          <circle cx="0" cy="-67.5" r="3" fill="#5B4FE9"/>
+          <circle cx="60.06" cy="-30" r="3" fill="#5B4FE9"/>
+          <circle cx="60.06" cy="30" r="3" fill="#5B4FE9"/>
+          <circle cx="0" cy="58.5" r="3" fill="#5B4FE9"/>
+          <circle cx="-60.06" cy="30" r="3" fill="#5B4FE9"/>
+          <circle cx="-58.5" cy="-26.25" r="3" fill="#5B4FE9"/>
+          <text x="0" y="-100" text-anchor="middle" font-size="11" fill="#6B7280">逻辑 75</text>
+          <text x="92" y="-40" text-anchor="middle" font-size="11" fill="#6B7280">产品 60</text>
+          <text x="92" y="55" text-anchor="middle" font-size="11" fill="#6B7280">用户 80</text>
+          <text x="0" y="108" text-anchor="middle" font-size="11" fill="#6B7280">协作 70</text>
+          <text x="-92" y="55" text-anchor="middle" font-size="11" fill="#6B7280">抗压 65</text>
+          <text x="-92" y="-40" text-anchor="middle" font-size="11" fill="#6B7280">数据 78</text>
+        </g>
+      </svg>
+    </div>
+    <div class="card" style="border-left:3px solid #10B981;">
+      <div style="font-weight:600; color:#10B981; margin-bottom:8px;">✓ 优势（3 项）</div>
+      <div style="font-size:13px; line-height:1.8; color:#1A1A2E;">
+        1. <b>用户调研有真实感</b>：80 份问卷 + 朋友圈投放展示了闭环<br/>
+        2. <b>数据敏感度不错</b>：主动量化"2000+ 用户 / 月 GMV 8 万"<br/>
+        3. <b>回答结构清晰</b>：从观察到验证有逻辑链
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid #EF4444;">
+      <div style="font-weight:600; color:#EF4444; margin-bottom:8px;">✗ 不足（2 项 · 敢说真话）</div>
+      <div style="font-size:13px; line-height:1.8; color:#1A1A2E;">
+        1. <b>"熟人效应"识别弱</b>：被追问时承认没在陌生流量池验证，反思不够深<br/>
+        2. <b>数据基线缺失</b>：80 份样本量较小，未说<b>为什么是 80 而非 200</b>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-weight:600; margin-bottom:10px;">🎯 3 条关键改进建议</div>
+      <div style="border-left:2px solid #5B4FE9; padding:4px 0 4px 12px; margin-bottom:10px;">
+        <div style="font-size:13px; font-weight:600; margin-bottom:2px;">优先级 P0 · 用户增长类必练</div>
+        <div style="font-size:12px; color:#6B7280; line-height:1.6;">做 5 道陌生人场景的"如何验证需求"题，重点练"流量来源分层"</div>
+      </div>
+      <div style="border-left:2px solid #5B4FE9; padding:4px 0 4px 12px; margin-bottom:10px;">
+        <div style="font-size:13px; font-weight:600; margin-bottom:2px;">优先级 P1 · 数据基线</div>
+        <div style="font-size:12px; color:#6B7280; line-height:1.6;">下次回答"为什么是 X 而非 Y"前，先说"<b>行业基线 / 对比对象</b>"</div>
+      </div>
+      <div style="border-left:2px solid #5B4FE9; padding:4px 0 4px 12px;">
+        <div style="font-size:13px; font-weight:600; margin-bottom:2px;">优先级 P2 · 反思深度</div>
+        <div style="font-size:12px; color:#6B7280; line-height:1.6;">被追问时用"我意识到 / 我的反思是..."句式，把被动转为主动</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:8px; margin-top:16px;">
+      <button class="btn btn-ghost" style="flex:1; margin:0;" onclick="go('p10')">查看完整复盘</button>
+      <button class="btn btn-primary" style="flex:1; margin:0;" onclick="go('p06')">再来一次</button>
+    </div>
+  </div>
+</div>
+<!-- P09 -->
+<div class="page" id="page-p09">
+  <div class="topbar">
+    <span class="back" onclick="go('p03')">‹</span>
+    <span class="topbar-title">能力档案</span>
+    <span class="right" onclick="toast('分享给朋友')">分享</span>
+  </div>
+  <div style="padding:0 16px;">
+    <div class="card" style="text-align:center;">
+      <div style="font-size:12px; color:#6B7280;">综合能力</div>
+      <div style="font-size:48px; font-weight:700; color:#5B4FE9; line-height:1.2; margin:4px 0;">72.5<span style="font-size:18px; color:#9CA3AF;">/100</span></div>
+      <div style="font-size:12px; color:#6B7280;">同档位排名前 35% · <span class="text-success">↑6.2</span> 较上月</div>
+    </div>
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div style="font-weight:600;">📈 能力进步曲线</div>
+        <span class="tag tag-primary" style="font-size:10px;">v0.2.3 V1.0</span>
+      </div>
+      <svg viewBox="0 0 320 120" style="width:100%; height:120px;">
+        <defs>
+          <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#5B4FE9;stop-opacity:0.3"/>
+            <stop offset="100%" style="stop-color:#5B4FE9;stop-opacity:0"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="30" x2="320" y2="30" stroke="#F3F4F6" stroke-width="1"/>
+        <line x1="0" y1="60" x2="320" y2="60" stroke="#F3F4F6" stroke-width="1"/>
+        <line x1="0" y1="90" x2="320" y2="90" stroke="#F3F4F6" stroke-width="1"/>
+        <path d="M 0 95 L 50 90 L 100 82 L 150 75 L 200 60 L 250 50 L 290 40 L 320 35" fill="none" stroke="#5B4FE9" stroke-width="2.5"/>
+        <path d="M 0 95 L 50 90 L 100 82 L 150 75 L 200 60 L 250 50 L 290 40 L 320 35 L 320 120 L 0 120 Z" fill="url(#grad2)"/>
+        <circle cx="200" cy="60" r="4" fill="white" stroke="#5B4FE9" stroke-width="2"/>
+        <text x="200" y="50" text-anchor="middle" font-size="10" fill="#5B4FE9" font-weight="600">面字节挂了</text>
+        <circle cx="290" cy="40" r="5" fill="#5B4FE9"/>
+        <text x="290" y="30" text-anchor="middle" font-size="10" fill="#5B4FE9" font-weight="600">面小红书过了</text>
+      </svg>
+      <div style="display:flex; justify-content:space-between; font-size:10px; color:#9CA3AF; margin-top:6px;">
+        <span>5/15</span><span>5/22</span><span>5/29</span><span>6/5</span><span>6/9</span>
+      </div>
+      <div style="background:#F0EEFF; border-radius:8px; padding:10px 12px; margin-top:10px;">
+        <div style="font-size:12px; color:#5B4FE9; line-height:1.5;">🎉 <b>这周你的"用户视角"题比上周提升了 15 分！</b>继续保持。</div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-weight:600; margin-bottom:12px;">分项能力</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div style="background:#F8F9FB; border-radius:10px; padding:12px;">
+          <div style="font-size:11px; color:#6B7280;">逻辑思维</div>
+          <div style="font-size:22px; font-weight:700; color:#5B4FE9; margin-top:2px;">75</div>
+        </div>
+        <div style="background:#F8F9FB; border-radius:10px; padding:12px;">
+          <div style="font-size:11px; color:#6B7280;">产品设计</div>
+          <div style="font-size:22px; font-weight:700; color:#F59E0B; margin-top:2px;">60</div>
+        </div>
+        <div style="background:#F8F9FB; border-radius:10px; padding:12px;">
+          <div style="font-size:11px; color:#6B7280;">用户视角</div>
+          <div style="font-size:22px; font-weight:700; color:#10B981; margin-top:2px;">80</div>
+        </div>
+        <div style="background:#F8F9FB; border-radius:10px; padding:12px;">
+          <div style="font-size:11px; color:#6B7280;">沟通协作</div>
+          <div style="font-size:22px; font-weight:700; color:#5B4FE9; margin-top:2px;">70</div>
+        </div>
+        <div style="background:#F8F9FB; border-radius:10px; padding:12px;">
+          <div style="font-size:11px; color:#6B7280;">抗压能力</div>
+          <div style="font-size:22px; font-weight:700; color:#F59E0B; margin-top:2px;">65</div>
+        </div>
+        <div style="background:#F8F9FB; border-radius:10px; padding:12px;">
+          <div style="font-size:11px; color:#6B7280;">数据能力</div>
+          <div style="font-size:22px; font-weight:700; color:#10B981; margin-top:2px;">78</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:16px 16px 8px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div style="font-weight:600;">📅 历次面试</div>
+        <span class="text-primary fs-12">共 7 次</span>
+      </div>
+      <div onclick="go('p10')" style="display:flex; align-items:center; padding:10px 0; border-bottom:1px solid #F3F4F6;">
+        <div style="width:8px; height:8px; background:#5B4FE9; border-radius:50%; margin-right:12px;"></div>
+        <div style="flex:1;">
+          <div style="font-size:13px; font-weight:500;">字节 · 产品 1 面</div>
+          <div style="font-size:11px; color:#6B7280;">6/9 14:30</div>
+        </div>
+        <div style="font-size:16px; font-weight:700; color:#5B4FE9;">72</div>
+      </div>
+      <div style="display:flex; align-items:center; padding:10px 0; border-bottom:1px solid #F3F4F6;">
+        <div style="width:8px; height:8px; background:#10B981; border-radius:50%; margin-right:12px;"></div>
+        <div style="flex:1;">
+          <div style="font-size:13px; font-weight:500;">小红书 · 产品 1 面</div>
+          <div style="font-size:11px; color:#6B7280;">6/8 20:00 · <span class="text-success">已过</span></div>
+        </div>
+        <div style="font-size:16px; font-weight:700; color:#10B981;">85</div>
+      </div>
+      <div style="display:flex; align-items:center; padding:10px 0; border-bottom:1px solid #F3F4F6;">
+        <div style="width:8px; height:8px; background:#EF4444; border-radius:50%; margin-right:12px;"></div>
+        <div style="flex:1;">
+          <div style="font-size:13px; font-weight:500;">字节 · 产品 1 面</div>
+          <div style="font-size:11px; color:#6B7280;">6/5 10:00 · <span class="text-error">未通过</span></div>
+        </div>
+        <div style="font-size:16px; font-weight:700; color:#EF4444;">58</div>
+      </div>
+      <div style="display:flex; align-items:center; padding:10px 0;">
+        <div style="width:8px; height:8px; background:#5B4FE9; border-radius:50%; margin-right:12px;"></div>
+        <div style="flex:1;">
+          <div style="font-size:13px; font-weight:500;">腾讯 · 产品 1 面</div>
+          <div style="font-size:11px; color:#6B7280;">6/6 15:00</div>
+        </div>
+        <div style="font-size:16px; font-weight:700; color:#5B4FE9;">80</div>
+      </div>
+    </div>
+    <div class="card" style="background:#FEF3E2; border-left:3px solid #F59E0B;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <div style="font-weight:600; color:#92400E;">📌 失败案例参考</div>
+        <span class="tag tag-warning">V1.5</span>
+      </div>
+      <div style="font-size:12px; color:#92400E; line-height:1.7;">
+        <b>字节 6/5 面试 58 分</b>失败原因：用户增长类题被连环追问时没准备好，暴露数据基线缺失。<br/>
+        <b>避坑指南</b>：面试前 5 分钟快速回顾目标公司最近的 3 个核心指标，回答时主动说"对比基线"。
+      </div>
+    </div>
+  </div>
+</div>
+<!-- P10 -->
+<div class="page" id="page-p10">
+  <div class="topbar">
+    <span class="back" onclick="go('p09')">‹</span>
+    <span class="topbar-title">复盘详情</span>
+    <span class="right" onclick="toast('已分享')">分享</span>
+  </div>
+  <div style="padding:0 16px;">
+    <div class="card">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+        <div style="font-size:32px;">🎵</div>
+        <div style="flex:1;">
+          <div style="font-weight:600;">字节 · 产品 1 面</div>
+          <div style="font-size:11px; color:#6B7280;">6/9 14:30 · 23 分钟 · 字节式压力</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:24px; font-weight:700; color:#5B4FE9;">72</div>
+          <div style="font-size:10px; color:#9CA3AF;">综合分</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="padding:0;">
+      <div style="padding:14px 16px; border-bottom:1px solid #F3F4F6; display:flex; align-items:center; justify-content:space-between;">
+        <div style="font-weight:600; font-size:14px;">📝 完整对话回放</div>
+        <span class="text-primary fs-12" onclick="toast('演示版：仅展示关键节点')">5 个问答</span>
+      </div>
+      <div style="padding:14px 16px; border-bottom:1px solid #F3F4F6;">
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+          <div style="width:24px; height:24px; background:linear-gradient(135deg, #5B4FE9, #7B68EE); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:11px; flex-shrink:0;">Q</div>
+          <div style="font-size:12px; color:#6B7280;">字节面试官</div>
+        </div>
+        <div style="font-size:13px; line-height:1.6; margin-bottom:8px; color:#1A1A2E;">我看你简历上做过一个校园二手交易平台，2000+ 用户。那你当时怎么确定这个需求是真实存在的？</div>
+        <div style="background:#F8F9FB; border-radius:8px; padding:10px 12px; font-size:12px; color:#6B7280; line-height:1.6;">
+          <b>你的回答：</b>嗯……其实一开始是我们自己宿舍有闲置物品不好处理，后来发现身边同学也有这个问题。我们就做了一个简单的问卷，发在朋友圈里，回收了大概 80 份。
+        </div>
+        <div style="display:flex; gap:6px; margin-top:8px;">
+          <span class="tag tag-success" style="font-size:10px;">得分 75</span>
+          <span class="tag tag-primary" style="font-size:10px;">用户调研</span>
+        </div>
+      </div>
+      <div style="padding:14px 16px; border-bottom:1px solid #F3F4F6; background:#FFF8F8;">
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+          <div style="width:24px; height:24px; background:#EF4444; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:11px; flex-shrink:0;">!</div>
+          <div style="font-size:12px; color:#EF4444;">字节面试官 · 深度追问</div>
+        </div>
+        <div style="font-size:13px; line-height:1.6; margin-bottom:8px; color:#1A1A2E;">80 份样本量在朋友圈能回收，说明身边人有这个需求。但你怎么证明它不是"熟人效应"？</div>
+        <div style="background:#FEE2E2; border-radius:8px; padding:10px 12px; font-size:12px; line-height:1.6;">
+          <b style="color:#991B1B;">你的回答（卡壳 22s）：</b>这个……当时我们时间有限，确实没在陌生流量池投过。
+        </div>
+        <div style="display:flex; gap:6px; margin-top:8px;">
+          <span class="tag tag-error" style="font-size:10px;">得分 55</span>
+          <span class="tag tag-warning" style="font-size:10px;">数据基线</span>
+        </div>
+      </div>
+      <div style="padding:14px 16px;">
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+          <div style="width:24px; height:24px; background:linear-gradient(135deg, #5B4FE9, #7B68EE); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:11px; flex-shrink:0;">Q</div>
+          <div style="font-size:12px; color:#6B7280;">字节面试官</div>
+        </div>
+        <div style="font-size:13px; line-height:1.6; margin-bottom:8px; color:#1A1A2E;">你提到了"月 GMV 8 万"，那你的获客成本是多少？</div>
+        <div style="background:#F8F9FB; border-radius:8px; padding:10px 12px; font-size:12px; color:#6B7280; line-height:1.6;">
+          <b>你的回答：</b>应该是……我不确定具体数字，应该是 0，因为都是通过宿舍楼和 QQ 群裂变的，没有付费投放。
+        </div>
+        <div style="display:flex; gap:6px; margin-top:8px;">
+          <span class="tag tag-warning" style="font-size:10px;">得分 68</span>
+          <span class="tag tag-primary" style="font-size:10px;">数据敏感度</span>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="background:#F0EEFF;">
+      <div style="font-weight:600; color:#5B4FE9; margin-bottom:8px;">💡 关键改进建议</div>
+      <div style="font-size:13px; line-height:1.7; color:#1A1A2E;">
+        1. <b>下次回答前先说"基线"</b>：在被追问数据时，先主动说"行业内平均获客成本 X 元，我是 0"，把被动转为主动<br/>
+        2. <b>练陌生人场景验证题</b>：建议做 3 道"如何验证需求是真实存在"的题<br/>
+        3. <b>建立反思句式</b>：被追问时用"我意识到……，下次我会……"代替"嗯……这个……"
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" style="margin-top:16px;" onclick="go('p06')">针对改进 → 重新面试</button>
+  </div>
+</div>
+<!-- P11 -->
+<div class="page" id="page-p11">
+  <div class="topbar">
+    <span class="back" onclick="go('p03')">‹</span>
+    <span class="topbar-title">面试官人设库</span>
+    <span></span>
+  </div>
+  <div style="padding:0 16px;">
+    <div class="card" style="background:linear-gradient(135deg, #5B4FE9, #7B68EE); color:white; text-align:center;">
+      <div style="font-size:11px; opacity:0.85;">v0.2.3 强差异化</div>
+      <div style="font-size:20px; font-weight:600; margin-top:4px;">开箱即用的真实面试官</div>
+      <div style="font-size:12px; opacity:0.9; margin-top:6px;">无需自设风格 · 4 家公司 + 持续扩展中</div>
+    </div>
+    <div style="margin:20px 0 8px; font-weight:600;">4 大公司 · 8 个岗位方向</div>
+    <div class="card" onclick="toast('已选择字节面试官风格')" style="cursor:pointer;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+        <div style="width:48px; height:48px; background:linear-gradient(135deg, #000000, #25F4EE); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; color:white;">🎵</div>
+        <div style="flex:1;">
+          <div style="font-weight:600;">字节跳动</div>
+          <div style="font-size:11px; color:#6B7280;">抖音 / 今日头条 / TikTok · 3 个方向</div>
+        </div>
+        <span class="tag tag-primary">挑战型</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.7; background:#F8F9FB; border-radius:8px; padding:10px 12px;">
+        <b>风格画像：</b>节奏快、连环追问、挑战判断、追问"为什么"<br/>
+        <b>典型考题：</b>用户增长策略 / AB 实验设计 / 跨部门冲突<br/>
+        <b>代表话术：</b>"这个数据怎么来的？对比基线呢？"
+      </div>
+    </div>
+    <div class="card" onclick="toast('已选择腾讯面试官风格')" style="cursor:pointer;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+        <div style="width:48px; height:48px; background:linear-gradient(135deg, #0052D9, #00C8FF); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; color:white;">🐧</div>
+        <div style="flex:1;">
+          <div style="font-weight:600;">腾讯</div>
+          <div style="font-size:11px; color:#6B7280;">微信 / QQ / 视频号 · 3 个方向</div>
+        </div>
+        <span class="tag tag-success">稳健型</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.7; background:#F8F9FB; border-radius:8px; padding:10px 12px;">
+        <b>风格画像：</b>基础扎实、追问到细节、关注技术理解、稳重耐心<br/>
+        <b>典型考题：</b>用户需求分析 / 系统性思考 / 长链路产品设计<br/>
+        <b>代表话术：</b>"你为什么这么设计？如果用户量增加 10 倍会怎样？"
+      </div>
+    </div>
+    <div class="card" onclick="toast('已选择小红书面试官风格')" style="cursor:pointer;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+        <div style="width:48px; height:48px; background:linear-gradient(135deg, #FF2442, #FF7B8B); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; color:white;">📕</div>
+        <div style="flex:1;">
+          <div style="font-weight:600;">小红书</div>
+          <div style="font-size:11px; color:#6B7280;">社区 / 商业化 / UGC · 3 个方向</div>
+        </div>
+        <span class="tag tag-warning">用户视角</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.7; background:#F8F9FB; border-radius:8px; padding:10px 12px;">
+        <b>风格画像：</b>温和亲切、关注用户共情、强调审美与生活方式<br/>
+        <b>典型考题：</b>用户画像 / 内容策略 / 社区氛围维护<br/>
+        <b>代表话术：</b>"这个功能的目标用户会怎么用？他们的痛点是什么？"
+      </div>
+    </div>
+    <div class="card" onclick="toast('已选择美团面试官风格')" style="cursor:pointer;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+        <div style="width:48px; height:48px; background:linear-gradient(135deg, #FFD100, #FFB800); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; color:white;">🐸</div>
+        <div style="flex:1;">
+          <div style="font-weight:600;">美团</div>
+          <div style="font-size:11px; color:#6B7280;">外卖 / 到店 / 闪购 · 3 个方向</div>
+        </div>
+        <span class="tag tag-gray">业务驱动</span>
+      </div>
+      <div style="font-size:12px; color:#6B7280; line-height:1.7; background:#F8F9FB; border-radius:8px; padding:10px 12px;">
+        <b>风格画像：</b>业务驱动、重逻辑推演、关注 ROI 与成本<br/>
+        <b>典型考题：</b>商业模式 / 业务策略 / 商家与用户平衡<br/>
+        <b>代表话术：</b>"这个方案的 ROI 怎么算？商家和用户会怎么选？"
+      </div>
+    </div>
+    <div class="card" style="text-align:center; background:#F8F9FB; border:1px dashed #E5E7EB;">
+      <div style="font-size:13px; color:#6B7280;">🚀 持续扩展中</div>
+      <div style="font-size:11px; color:#9CA3AF; margin-top:4px;">阿里 / 百度 / 京东 / 拼多多 · 计划中</div>
+    </div>
+  </div>
+</div>
+<!-- P12 -->
+<div class="page" id="page-p12">
+  <div class="topbar">
+    <span class="back" onclick="go('p03')">‹</span>
+    <span class="topbar-title">订阅 Pro</span>
+    <span class="right" onclick="go('p15')">权益</span>
+  </div>
+  <div style="padding:0 16px;">
+    <div style="text-align:center; margin:20px 0 24px;">
+      <div style="font-size:20px; font-weight:700;">解锁完整能力</div>
+      <div style="font-size:13px; color:#6B7280; margin-top:4px;">基于访谈：5/5 用户愿付 30-120 元/月（加权 45 元/月）</div>
+    </div>
+    <div class="card" style="background:#FFF8E6; border-left:3px solid #F59E0B; display:flex; align-items:center; gap:12px;">
+      <div style="font-size:24px;">🎫</div>
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:600;">免费版剩余次数</div>
+        <div style="font-size:11px; color:#6B7280; margin-top:2px;">本月已用 2/3 次</div>
+      </div>
+      <span class="text-warning fw-700 fs-17">1</span>
+    </div>
+    <div class="card" style="padding:0; overflow:hidden;">
+      <div style="padding:14px 16px; background:#F8F9FB; border-bottom:1px solid #E5E7EB; display:flex; align-items:center; justify-content:space-between;">
+        <span style="font-size:13px; color:#6B7280;">权益</span>
+        <div style="display:flex; gap:20px; font-size:12px;">
+          <span style="color:#6B7280;">免费</span>
+          <span style="color:#5B4FE9; font-weight:600;">Pro</span>
+        </div>
+      </div>
+      <div style="padding:0 16px;">
+        <div style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid #F3F4F6;">
+          <div style="flex:1; font-size:13px;">每月模拟面试次数</div>
+          <div style="display:flex; gap:20px; font-size:12px;">
+            <span style="color:#6B7280; width:30px; text-align:right;">3</span>
+            <span style="color:#5B4FE9; font-weight:600; width:30px; text-align:right;">∞</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid #F3F4F6;">
+          <div style="flex:1; font-size:13px;">4 家公司面试官人设</div>
+          <div style="display:flex; gap:20px; font-size:12px;">
+            <span style="color:#EF4444; width:30px; text-align:right;">✗</span>
+            <span style="color:#10B981; font-weight:600; width:30px; text-align:right;">✓</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid #F3F4F6;">
+          <div style="flex:1; font-size:13px;">压力级别选择</div>
+          <div style="display:flex; gap:20px; font-size:12px;">
+            <span style="color:#EF4444; width:30px; text-align:right;">✗</span>
+            <span style="color:#10B981; font-weight:600; width:30px; text-align:right;">✓</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid #F3F4F6;">
+          <div style="flex:1; font-size:13px;">经历包装（跨专业）</div>
+          <div style="display:flex; gap:20px; font-size:12px;">
+            <span style="color:#EF4444; width:30px; text-align:right;">✗</span>
+            <span style="color:#10B981; font-weight:600; width:30px; text-align:right;">✓</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid #F3F4F6;">
+          <div style="flex:1; font-size:13px;">完整结构化反馈</div>
+          <div style="display:flex; gap:20px; font-size:12px;">
+            <span style="color:#F59E0B; width:30px; text-align:right;">部分</span>
+            <span style="color:#10B981; font-weight:600; width:30px; text-align:right;">✓</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; padding:12px 0; border-bottom:1px solid #F3F4F6;">
+          <div style="flex:1; font-size:13px;">能力进步曲线</div>
+          <div style="display:flex; gap:20px; font-size:12px;">
+            <span style="color:#EF4444; width:30px; text-align:right;">✗</span>
+            <span style="color:#10B981; font-weight:600; width:30px; text-align:right;">✓</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; padding:12px 0;">
+          <div style="flex:1; font-size:13px;">失败案例库</div>
+          <div style="display:flex; gap:20px; font-size:12px;">
+            <span style="color:#EF4444; width:30px; text-align:right;">✗</span>
+            <span style="color:#F59E0B; font-weight:600; width:30px; text-align:right;">V1.5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg, #5B4FE9, #7B68EE); color:white; text-align:center; margin-top:16px;">
+      <div style="font-size:11px; opacity:0.85;">Pro 月卡 · 限时</div>
+      <div style="margin:8px 0;">
+        <span style="font-size:14px; opacity:0.7; text-decoration:line-through;">¥49</span>
+        <span style="font-size:48px; font-weight:700; margin:0 8px;">¥29</span>
+        <span style="font-size:14px; opacity:0.85;">/月</span>
+      </div>
+      <div style="font-size:11px; opacity:0.85;">对标 AI 面霸 9.9 元 + 面试狗 29.9 元的友好区间</div>
+    </div>
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <div style="flex:1; padding:14px; text-align:center; background:white; border:1px solid #E5E7EB; border-radius:10px; font-size:13px;">月卡 ¥29</div>
+      <div style="flex:1; padding:14px; text-align:center; background:#F0EEFF; border:2px solid #5B4FE9; border-radius:10px; font-size:13px; color:#5B4FE9; font-weight:600;">年卡 ¥199 <span style="font-size:10px; background:#5B4FE9; color:white; padding:2px 6px; border-radius:4px; margin-left:4px;">省 43%</span></div>
+    </div>
+    <button class="btn btn-primary btn-block" style="margin-top:16px;" onclick="go('p13')">立即订阅 →</button>
+    <div style="text-align:center; font-size:11px; color:#9CA3AF; margin-top:12px;">支持随时取消 · 7 天无理由退款</div>
+  </div>
+</div>
+<!-- P13 -->
+<div class="page" id="page-p13">
+  <div class="topbar">
+    <span class="back" onclick="go('p12')">‹</span>
+    <span class="topbar-title">支付</span>
+    <span></span>
+  </div>
+  <div style="padding:0 16px;">
+    <div class="card" style="background:#F8F9FB;">
+      <div style="font-size:13px; color:#6B7280;">订单</div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+        <div>
+          <div style="font-weight:600;">Pro 年卡</div>
+          <div style="font-size:11px; color:#6B7280; margin-top:2px;">2026/06/09 - 2027/06/09</div>
+        </div>
+        <div style="font-size:24px; font-weight:700; color:#5B4FE9;">¥199</div>
+      </div>
+    </div>
+    <div style="margin:20px 0 12px; font-weight:600;">选择支付方式</div>
+    <div class="card" style="padding:0;">
+      <div style="padding:14px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #F3F4F6; cursor:pointer;" onclick="pickPay(this)">
+        <div style="width:32px; height:32px; background:#1AAD19; border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-size:16px;">💚</div>
+        <div style="flex:1; font-weight:500;">微信支付</div>
+        <div class="pay-radio" style="width:20px; height:20px; border:2px solid #5B4FE9; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+          <div style="width:10px; height:10px; background:#5B4FE9; border-radius:50%;"></div>
+        </div>
+      </div>
+      <div style="padding:14px 16px; display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="pickPay(this)">
+        <div style="width:32px; height:32px; background:#1677FF; border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-size:16px;">💙</div>
+        <div style="flex:1; font-weight:500;">支付宝</div>
+        <div class="pay-radio" style="width:20px; height:20px; border:2px solid #E5E7EB; border-radius:50%;"></div>
+      </div>
+    </div>
+    <div style="margin:20px 0 12px; font-weight:600;">优惠</div>
+    <div class="card" style="display:flex; align-items:center; gap:12px;">
+      <div style="font-size:20px;">🎁</div>
+      <div style="flex:1;">
+        <div style="font-weight:500;">新用户优惠券</div>
+        <div style="font-size:11px; color:#6B7280; margin-top:2px;">已自动使用</div>
+      </div>
+      <span class="text-error fw-600">-¥30</span>
+    </div>
+    <div class="card" style="background:#F0EEFF; margin-top:16px;">
+      <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+        <span style="font-size:13px; color:#6B7280;">小计</span>
+        <span style="font-size:14px;">¥199</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+        <span style="font-size:13px; color:#6B7280;">优惠</span>
+        <span style="font-size:14px; color:#EF4444;">-¥30</span>
+      </div>
+      <div style="border-top:1px solid #E5E7EB; padding-top:8px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:600;">实付</span>
+        <span style="font-size:24px; font-weight:700; color:#5B4FE9;">¥169</span>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" style="margin-top:16px;" onclick="showPaySuccess()">确认支付 ¥169</button>
+  </div>
+</div>
+<!-- P14 -->
+<div class="page" id="page-p14">
+  <div class="topbar" style="background:transparent; border:none;">
+    <span class="topbar-title" style="text-align:left; padding-left:0;">我的</span>
+    <span onclick="toast('设置')" style="font-size:20px;">⚙️</span>
+  </div>
+  <div style="padding:0 16px;">
+    <div class="card" style="display:flex; align-items:center; gap:14px; background:linear-gradient(135deg, #5B4FE9, #7B68EE); color:white;">
+      <div style="width:56px; height:56px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px;">👤</div>
+      <div style="flex:1;">
+        <div style="font-weight:600; font-size:16px;">张同学</div>
+        <div style="font-size:12px; opacity:0.85; margin-top:2px;">产品经理 · 北京</div>
+      </div>
+      <span class="tag" style="background:rgba(255,255,255,0.2); color:white;">Pro</span>
+    </div>
+    <div class="card" style="padding:0;">
+      <div onclick="go('p09')" style="padding:14px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #F3F4F6;">
+        <div style="font-size:18px;">📈</div>
+        <div style="flex:1; font-size:14px;">我的能力档案</div>
+        <div style="font-size:12px; color:#9CA3AF;">综合 72.5 分</div>
+        <span style="color:#9CA3AF;">›</span>
+      </div>
+      <div onclick="go('p05')" style="padding:14px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #F3F4F6;">
+        <div style="font-size:18px;">📄</div>
+        <div style="flex:1; font-size:14px;">我的简历</div>
+        <div style="font-size:12px; color:#9CA3AF;">3 段经历</div>
+        <span style="color:#9CA3AF;">›</span>
+      </div>
+      <div onclick="go('p11')" style="padding:14px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #F3F4F6;">
+        <div style="font-size:18px;">🎭</div>
+        <div style="flex:1; font-size:14px;">面试官人设库</div>
+        <div style="font-size:12px; color:#9CA3AF;">4 家公司</div>
+        <span style="color:#9CA3AF;">›</span>
+      </div>
+      <div onclick="go('p12')" style="padding:14px 16px; display:flex; align-items:center; gap:12px;">
+        <div style="font-size:18px;">💎</div>
+        <div style="flex:1; font-size:14px;">订阅管理</div>
+        <div style="font-size:12px; color:#10B981;">Pro 年卡</div>
+        <span style="color:#9CA3AF;">›</span>
+      </div>
+    </div>
+    <div class="card" style="padding:0;">
+      <div onclick="go('p15')" style="padding:14px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #F3F4F6;">
+        <div style="font-size:18px;">❓</div>
+        <div style="flex:1; font-size:14px;">帮助与反馈</div>
+        <span style="color:#9CA3AF;">›</span>
+      </div>
+      <div style="padding:14px 16px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #F3F4F6;">
+        <div style="font-size:18px;">📤</div>
+        <div style="flex:1; font-size:14px;">分享给朋友（邀请得 1 次）</div>
+        <span style="color:#9CA3AF;">›</span>
+      </div>
+      <div style="padding:14px 16px; display:flex; align-items:center; gap:12px;">
+        <div style="font-size:18px;">📄</div>
+        <div style="flex:1; font-size:14px;">隐私政策 / 用户协议</div>
+        <span style="color:#9CA3AF;">›</span>
+      </div>
+    </div>
+    <div style="text-align:center; font-size:11px; color:#9CA3AF; margin:24px 0 8px;">优面AI v0.2.3 · 敢说真话，让你真的进步</div>
+  </div>
+</div>
+<!-- P15 -->
+<div class="page" id="page-p15">
+  <div class="topbar">
+    <span class="back" onclick="go('p14')">‹</span>
+    <span class="topbar-title">帮助与关于</span>
+    <span></span>
+  </div>
+  <div style="padding:0 16px;">
+    <div class="card" style="background:linear-gradient(135deg, #5B4FE9, #7B68EE); color:white; text-align:center;">
+      <div style="font-size:32px; margin-bottom:8px;">🎯</div>
+      <div style="font-size:18px; font-weight:600;">优面AI</div>
+      <div style="font-size:12px; opacity:0.85; margin-top:4px;">敢说真话，让你真的进步</div>
+      <div style="font-size:11px; opacity:0.7; margin-top:12px;">v0.2.3 · MVP 演示版</div>
+    </div>
+    <div style="margin:20px 0 8px; font-weight:600;">常见问题</div>
+    <div class="card" onclick="toggleFaq(this)" style="cursor:pointer;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-weight:500; font-size:14px;">Q1. 反馈会不会太"温柔"？</div>
+        <span class="text-2">+</span>
+      </div>
+      <div class="faq-content" style="display:none; margin-top:12px; font-size:13px; color:#6B7280; line-height:1.7;">
+        不会。我们承诺"<b>敢说真话</b>"——<b>优点和不足并列</b>。每个回答都会给你：得分 + 优势 + 不足 + 改进建议，不会只夸你。
+      </div>
+    </div>
+    <div class="card" onclick="toggleFaq(this)" style="cursor:pointer;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-weight:500; font-size:14px;">Q2. 面试到一半可以退出吗？</div>
+        <span class="text-2">+</span>
+      </div>
+      <div class="faq-content" style="display:none; margin-top:12px; font-size:13px; color:#6B7280; line-height:1.7;">
+        可以。点击右上角"✕"会弹窗确认"<b>是否保存并查看反馈？</b>"，选择"保存并查看"会立刻生成已回答题目的反馈，<b>不会丢数据</b>。
+      </div>
+    </div>
+    <div class="card" onclick="toggleFaq(this)" style="cursor:pointer;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-weight:500; font-size:14px;">Q3. 跨专业/研究生能用吗？</div>
+        <span class="text-2">+</span>
+      </div>
+      <div class="faq-content" style="display:none; margin-top:12px; font-size:13px; color:#6B7280; line-height:1.7;">
+        可以！v0.2.3 新增<b>"经历包装"功能</b>：上传简历后，AI 会自动识别学术/跨专业经历，<b>在不编造事实</b>的前提下，把它们映射成产品岗视角的能力标签。
+      </div>
+    </div>
+    <div class="card" onclick="toggleFaq(this)" style="cursor:pointer;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-weight:500; font-size:14px;">Q4. 压力级别"字节式"会不会太狠？</div>
+        <span class="text-2">+</span>
+      </div>
+      <div class="faq-content" style="display:none; margin-top:12px; font-size:13px; color:#6B7280; line-height:1.7;">
+        确实高强度。我们提供 3 档：<b>温和 / 标准 / 字节式</b>。建议你先从"温和"开始，熟悉流程后再挑战"字节式"。如果中途觉得压力大，<b>随时可以退出</b>。
+      </div>
+    </div>
+    <div class="card" onclick="toggleFaq(this)" style="cursor:pointer;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-weight:500; font-size:14px;">Q5. AI 思路提示会不会让我"上瘾"？</div>
+        <span class="text-2">+</span>
+      </div>
+      <div class="faq-content" style="display:none; margin-top:12px; font-size:13px; color:#6B7280; line-height:1.7;">
+        设计上有克制：<b>卡壳 30 秒才触发</b>，且<b>整场面试最多触发 1 次</b>。点击后只给思考框架，<b>不直接给答案</b>。
+      </div>
+    </div>
+    <div class="card" style="background:#F8F9FB; text-align:center; margin-top:16px;">
+      <div style="font-size:13px; font-weight:600;">还有问题？</div>
+      <div style="font-size:12px; color:#6B7280; margin-top:6px;">加入用户群：扫码联系小助手</div>
+      <div style="font-size:11px; color:#9CA3AF; margin-top:8px;">📧 hi@youmian-ai.example.com</div>
+    </div>
+  </div>
+</div>
