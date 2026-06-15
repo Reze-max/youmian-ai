@@ -1,8 +1,8 @@
-// Vercel Serverless Function: LLM 代理
+// Vercel Serverless Function: LLM 代理（CommonJS 版）
 // 接收前端 /api/llm 请求，从环境变量读 KEY，转发到真实 LLM 端点
-// 优势：API KEY 完全隐藏在 Vercel 后端，前端 view-source 看不到
-export default async function handler(req, res) {
-  // CORS（Vercel 默认同源，但兼容自定义域名/跨域调试）
+// API KEY 隐藏在 Vercel 后端环境变量，前端 view-source 看不到
+module.exports = async function handler(req, res) {
+  // CORS（Vercel 默认同源，兼容自定义域名/跨域调试）
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -10,7 +10,8 @@ export default async function handler(req, res) {
 
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { system, messages, stream, jsonMode, maxTokens, temperature } = req.body || {};
+  const body = req.body || {};
+  const { system, messages, stream, jsonMode, maxTokens, temperature } = body;
   if (!messages || !Array.isArray(messages)) {
     return res.status(400).json({ error: 'messages required' });
   }
@@ -21,17 +22,17 @@ export default async function handler(req, res) {
   const model = process.env.LLM_MODEL || 'MiniMax-M3';
 
   if (!apiKey) {
-    return res.status(500).json({ error: 'LLM_API_KEY not configured on server. Set it in Vercel Dashboard → Settings → Environment Variables.' });
+    return res.status(500).json({ error: 'LLM_API_KEY not configured on server. Set it in Vercel Dashboard.' });
   }
 
-  const body = {
+  const upstreamBody = {
     model: model,
     messages: [{ role: 'system', content: system || '' }, ...messages],
     stream: !!stream,
     temperature: typeof temperature === 'number' ? temperature : 0.7,
     max_tokens: maxTokens || 1000
   };
-  if (jsonMode) body.response_format = { type: 'json_object' };
+  if (jsonMode) upstreamBody.response_format = { type: 'json_object' };
 
   try {
     const upstream = await fetch(endpoint, {
@@ -40,7 +41,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + apiKey
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(upstreamBody)
     });
 
     if (!upstream.ok) {
@@ -72,4 +73,4 @@ export default async function handler(req, res) {
   } catch (e) {
     return res.status(500).json({ error: 'Proxy error', detail: e.message });
   }
-}
+};
