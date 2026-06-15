@@ -5003,6 +5003,7 @@ go('p01');
 
     // 2. 存到全局（关键：P07 用这两个）
     window._selectedResume = parsed.originalText || rawText;
+    window._p05ParsedResume = parsed;  // 存 parsed 给 p05RunPackaging 用（含 projects/skills/keyNumbers）
     if (typeof p07State !== 'undefined' && p07State) p07State.resume = parsed.originalText || rawText;
 
     // 3. 标记已上传 + UI 切换
@@ -5087,6 +5088,72 @@ go('p01');
 
   window.llmHooks = window.llmHooks || {};
 
+  // === 动态从已上传简历生成 experiences（替代硬编码） ===
+  function p05BuildExperiencesFromResume() {
+    const DEFAULT = [
+      { title: '学术研究 · 企业流程建模', text: '信管研究生期间，研究 XX 企业 ERP 流程优化方法论，输出论文 1 篇', isCrossMajor: true },
+      { title: '校园创业 · 校园二手交易平台', text: '3 人团队运营，覆盖 2000+ 用户，月 GMV 8 万', isCrossMajor: false },
+      { title: '课程项目 · 数据分析报告', text: '商业分析课程项目，分析某零售品牌销售数据，输出 30 页报告', isCrossMajor: true }
+    ];
+    // 1. 优先用 parsed.projects
+    const parsed = window._p05ParsedResume;
+    if (parsed && Array.isArray(parsed.projects) && parsed.projects.length > 0) {
+      const list = parsed.projects.slice(0, 3).map(function(p, i) {
+        var title = (p.name || p.title || ('经历 ' + (i+1))).toString().slice(0, 30);
+        var text = (p.highlights || p.text || p.description || (typeof p === 'string' ? p : '')).toString();
+        return { title: '· ' + title, text: text, isCrossMajor: false };
+      }).filter(function(x) { return x.text && x.text.trim().length >= 5; });
+      if (list.length > 0) return list;
+    }
+    // 2. 兜底：按段落切分原文
+    var text = window._selectedResume || (parsed && parsed.originalText) || "";
+    if (text && text.trim().length > 20) {
+      var segments = text.split(/\n\s*\n|\r\n\s*\r\n/)
+        .map(function(s) { return s.trim(); })
+        .filter(function(s) { return s.length >= 20; });
+      if (segments.length >= 1) {
+        return segments.slice(0, 3).map(function(s, i) {
+          var short = s.slice(0, 12).replace(/\s+/g, '');
+          return { title: '经历 ' + (i+1) + ' · ' + short, text: s, isCrossMajor: false };
+        });
+      }
+    }
+    // 3. 终极兜底：硬编码
+    return DEFAULT;
+  }
+
+  // === 本地能力标签映射（LLM 失败时用） ===
+  function p05LocalPackage(experiences) {
+    var KEYWORDS = {
+      '用户洞察': /用户|客户|调研|访谈|痛点/,
+      '需求分析': /需求|分析|场景|拆解/,
+      '数据分析': /数据|指标|转化|留存|GMV|CTR|DAU|UV|漏斗|增长/,
+      '用户调研': /调研|问卷|访谈|focus/,
+      '跨部门协作': /跨部门|协作|沟通|协调|推动|对接/,
+      '商业化思考': /商业化|变现|盈利|付费|商业模式/,
+      '增长策略': /增长|拉新|促活|裂变|分享|投放/,
+      '内容运营': /内容|文案|运营|活动|策划/,
+      '流程优化': /流程|优化|效率|标准化|SOP/,
+      '系统思维': /系统|框架|结构化|体系|顶层设计/,
+      '团队协作': /团队|协作|分工|带领|管理/,
+      '商业洞察': /行业|趋势|洞察|竞品|格局|战略/
+    };
+    return experiences.map(function(exp) {
+      var tags = [];
+      var expText = (exp.text || "") + " " + (exp.title || "");
+      for (var name in KEYWORDS) {
+        if (KEYWORDS.hasOwnProperty(name) && KEYWORDS[name].test(expText)) {
+          tags.push({ name: name, reason: '简历匹配' + name.slice(0,2) });
+          if (tags.length >= 3) break;
+        }
+      }
+      if (tags.length === 0) {
+        tags.push({ name: '团队协作', reason: '简历未匹配具体标签' });
+      }
+      return { experience: exp.title, tags: tags };
+    });
+  }
+
   window.llmHooks.p05RunPackaging = async function() {
     const btn = document.getElementById('p05-llm-btn');
     const status = document.getElementById('p05-llm-status');
@@ -5106,12 +5173,12 @@ go('p01');
     status.textContent = '🤖 正在调用 MiniMax-M3 分析 3 段经历（流式）...';
     status.style.color = '#5B4FE9';
 
-    // 构造经历数据
-    const experiences = [
-      { title: '🎓 学术研究 · 企业流程建模', text: '信管研究生期间，研究 XX 企业 ERP 流程优化方法论，输出论文 1 篇', isCrossMajor: true },
-      { title: '🛒 校园创业 · 校园二手交易平台', text: '3 人团队运营，覆盖 2000+ 用户，月 GMV 8 万', isCrossMajor: false },
-      { title: '📊 课程项目 · 数据分析报告', text: '商业分析课程项目，分析某零售品牌销售数据，输出 30 页报告', isCrossMajor: true }
-    ];
+    // 构造经历数据（从已上传简历动态提取，替代硬编码）
+    const experiences = p05BuildExperiencesFromResume();
+    console.log('[P05] AI 包装输入：' + experiences.length + ' 段经历（来源：' +
+      (window._p05ParsedResume && window._p05ParsedResume.projects && window._p05ParsedResume.projects.length > 0 ? 'parsed.projects' :
+       (window._selectedResume ? '原文段落切分' : '硬编码兜底')) + '）');
+
 
     let result;
     try {
@@ -5129,7 +5196,16 @@ go('p01');
     if (!result) {
       status.textContent = '❌ AI 包装失败（API 返回空，已保留原始建议）';
       status.style.color = '#EF4444';
+      // 兜底：用本地规则做能力标签映射（基于 PACKAGE_EXPERIENCE_PROMPT 标签池）
+      console.warn('[P05] LLM 包装失败（API 返回空），使用本地规则包装');
+      const localPackages = p05LocalPackage(experiences);
+      if (localPackages && localPackages.length > 0) {
+        result = { packages: localPackages };
+        status.textContent = '⚠️ AI 不可用，已用本地规则生成包装建议（基于简历关键词）';
+        status.style.color = '#F59E0B';
+      } else {
       return;
+      }
     }
     if (!result.packages || result.packages.length === 0) {
       status.textContent = '⚠️ AI 返回无 packages 字段（' + Object.keys(result).join(',') + '）';
