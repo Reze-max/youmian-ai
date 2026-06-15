@@ -2017,7 +2017,7 @@ console.log('[优面AI QuestionCustomizer] 模块已加载');
       err.errorType = 'XREF_NOT_FOUND';
       throw err;
     }
-    const xrefOffset = parseInt(xrefM[1], 10) - tailStart;
+    const xrefOffset = parseInt(xrefM[1], 10);  // 绝对偏移（PDF 规范：startxref 后是文件绝对偏移）
     if (xrefOffset < 0 || xrefOffset >= bytes.length) {
       const err = new Error('XREF_OFFSET_INVALID: 交叉引用表偏移异常');
       err.errorType = 'XREF_OFFSET_INVALID';
@@ -2548,6 +2548,7 @@ console.log('[优面AI QuestionCustomizer] 模块已加载');
     extractChinese: _extractChineseOnly,
     PERSONAS,
     PRESSURE_LEVELS,
+    p05ExtractPdfNative,
     getDebugStats: () => _debugStats
   };
 
@@ -2564,6 +2565,8 @@ console.log('[优面AI QuestionCustomizer] 模块已加载');
     _updateDebugBar(`调用 ${s.calls} · token ${s.tokens} · 失败 ${s.errors} · 降级 ${s.fallbacks}`);
   }, 2000);
 
+  // 暴露跨 IIFE 共享的工具函数（让 llm-hooks.js 的 p05ReadPdf 能访问）
+  window._loadScript = _loadScript;
   console.log('[优面AI LLM] 模块已加载 · 主模型：' + (window.YOUMIAN_CONFIG?.PRIMARY?.MODEL || '未配置'));
 })();
 
@@ -4938,7 +4941,7 @@ go('p01');
     let pdfjsAvailable = false;
     if (!window.pdfjsLib) {
       try {
-        await _loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', 5000);
+        await window._loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', 5000);
         if (window.pdfjsLib) {
           window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
         }
@@ -4977,7 +4980,7 @@ go('p01');
     }
 
     // ======== 路径 2：自实现（无外网依赖）========
-    return await p05ExtractPdfNative(arrayBuffer);
+    return await window.YOUMIAN_LLM.p05ExtractPdfNative(arrayBuffer);
   }
 
   // 解析 + 存全局 + UI 反馈（核心函数）
